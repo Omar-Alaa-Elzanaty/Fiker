@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SquadAsService.Domain.Bases;
 using SquadAsService.Domain.Domains;
 using SquadAsService.Domain.Domains.Identity;
+using SquadAsService.Presistance.Extensions;
 using SquadASService.Domain.Domains;
 using System.Reflection;
 
@@ -31,6 +32,8 @@ namespace SquadAsService.Presistance.Context
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins", "Accounts");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "Accounts");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "Accounts");
+
+            builder.ApplyGlobalFilters<BaseEntity>(x => !x.IsDeleted);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
