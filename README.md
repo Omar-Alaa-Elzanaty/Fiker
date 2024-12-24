@@ -35,4 +35,4 @@ Before running the project, ensure you have the following installed:
 
    ```bash
    git clone https://github.com/yourusername/squad-as-a-service.git
-   cd squad-as-a-service
+   cd squadAsService
