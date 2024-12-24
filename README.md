@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project is taken from [**Squad as a Service**](https://squadsasaservice.com/) platform developed using **ASP.NET Web API** with **C# 9**. The API serves as the backend for a website that facilitates team tethering and select squads effectively.
+This project is taken from [**Squad as a Service**](https://squadsasaservice.com/) platform developed using **ASP.NET Web API** with **C# 9**. The API service as the backend for a website that facilitates team tethering and select squads effectively.
 
 ## Features
 
