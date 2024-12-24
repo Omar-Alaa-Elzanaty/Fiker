@@ -2,12 +2,11 @@
 
 ## Project Overview
 
-This project is taken from **Squad as a Service** platform developed using **ASP.NET Web API** with **C# 9**. The API serves as the backend for a website that facilitates team management, allowing organizations or individuals to form, manage, and monitor squads effectively.
+This project is taken from [**Squad as a Service**](https://squadsasaservice.com/) platform developed using **ASP.NET Web API** with **C# 9**. The API serves as the backend for a website that facilitates team tethering and select squads effectively.
 
 ## Features
 
 - **Create Your Squad**: Create a squad with your project requirements.
-- **Task Assignment**: Assign tasks to squad members and track progress.
 - **Scalability**: Database designed to add and remove any item in the system  and data.
 
 ## Tech Stack
