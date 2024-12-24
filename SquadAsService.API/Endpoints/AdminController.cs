@@ -9,9 +9,11 @@ using SquadAsService.Application.Features.Contacts.Command.Delete;
 using SquadAsService.Application.Features.Contacts.Queries.GetAllWithPagination;
 using SquadAsService.Application.Features.JobTitles.Commands.Create;
 using SquadAsService.Application.Features.Markets.Commands.Create;
+using SquadAsService.Application.Features.Markets.Commands.Delete;
 using SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination;
 using SquadAsService.Application.Features.Orders.Queries.GetById;
 using SquadAsService.Application.Features.Technologies.Commands.Create;
+using SquadAsService.Application.Features.Technologies.Commands.Delete;
 using SquadAsService.Domain.Bases;
 using SquadAsService.Domain.Constants;
 
@@ -71,7 +73,7 @@ namespace SquadAsService.API.Endpoints
         }
 
         [HttpDelete("areas/{id}")]
-        public async Task<ActionResult<BaseResponse<string>>> DeleteTechnology([FromRoute] int id)
+        public async Task<ActionResult<BaseResponse<string>>> DeleteArea([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new DeleteAreaCommand(id)));
         }
@@ -84,9 +86,21 @@ namespace SquadAsService.API.Endpoints
         }
 
         [HttpDelete("contactUs/{id}")]
-        public async Task<ActionResult<BaseResponse<DeleteContactUsCommand>>>Delete([FromRoute] int id)
+        public async Task<ActionResult<BaseResponse<DeleteContactUsCommand>>> DeleteContactUs([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new DeleteContactUsCommand(id)));
+        }
+
+        [HttpDelete("markets/{id}")]
+        public async Task<ActionResult<BaseResponse<string>>> DeleteMarket([FromRoute] int id)
+        {
+            return Ok(await _mediator.Send(new DeleteMarketCommand(id)));
+        }
+
+        [HttpDelete("technologies/{id}")]
+        public async Task<ActionResult<BaseResponse<string>>> DeleteTechnology([FromRoute] int id)
+        {
+            return Ok(await _mediator.Send(new DeleteTechnologyCommand(id)));
         }
     }
 }

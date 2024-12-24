@@ -4,15 +4,10 @@ using SquadAsService.Application.Extensions;
 using SquadAsService.Application.Interfaces.Repo;
 using SquadAsService.Domain.Bases;
 using SquadASService.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination
 {
-    public class GetAllOrdersWithPaginationQuery:PaginationRequest,IRequest<BaseResponse<List<GetAllOrdersWithPaginationQueryDto>>>;
+    public record GetAllOrdersWithPaginationQuery : PaginationRequest, IRequest<BaseResponse<List<GetAllOrdersWithPaginationQueryDto>>>;
 
     internal class GetAllOrderWithPaginationQueryHandler : IRequestHandler<GetAllOrdersWithPaginationQuery, BaseResponse<List<GetAllOrdersWithPaginationQueryDto>>>
     {
