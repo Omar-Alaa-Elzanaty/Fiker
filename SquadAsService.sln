@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.API", "SquadAsService.API\SquadAsService.API.csproj", "{D9BE55BE-2272-4BAE-8278-8161BA79E071}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Domain", "SquadASService.Domain\SquadAsService.Domain.csproj", "{18B2292F-E1B8-494C-AD23-175571ADF079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Infrastructure", "SquadAsService.Infrastructure\SquadAsService.Infrastructure.csproj", "{98F65008-DBCD-4883-9661-0948B77583CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{91E10B33-E6E8-43FC-A248-760D86F30859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Presentation", "SquadAsService.Presentation\SquadAsService.Presentation.csproj", "{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Presistance", "SquadAsService.Presistance\SquadAsService.Presistance.csproj", "{FF6BF864-027F-464D-8031-F861684067BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Application", "SquadAsService.Application\SquadAsService.Application.csproj", "{03D682A2-CB84-4EE8-A123-149AA6773613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9BE55BE-2272-4BAE-8278-8161BA79E071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9BE55BE-2272-4BAE-8278-8161BA79E071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9BE55BE-2272-4BAE-8278-8161BA79E071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9BE55BE-2272-4BAE-8278-8161BA79E071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18B2292F-E1B8-494C-AD23-175571ADF079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18B2292F-E1B8-494C-AD23-175571ADF079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18B2292F-E1B8-494C-AD23-175571ADF079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18B2292F-E1B8-494C-AD23-175571ADF079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F65008-DBCD-4883-9661-0948B77583CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F65008-DBCD-4883-9661-0948B77583CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F65008-DBCD-4883-9661-0948B77583CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F65008-DBCD-4883-9661-0948B77583CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF6BF864-027F-464D-8031-F861684067BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF6BF864-027F-464D-8031-F861684067BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF6BF864-027F-464D-8031-F861684067BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF6BF864-027F-464D-8031-F861684067BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D682A2-CB84-4EE8-A123-149AA6773613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D682A2-CB84-4EE8-A123-149AA6773613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D682A2-CB84-4EE8-A123-149AA6773613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D682A2-CB84-4EE8-A123-149AA6773613}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D9BE55BE-2272-4BAE-8278-8161BA79E071} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+		{18B2292F-E1B8-494C-AD23-175571ADF079} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+		{98F65008-DBCD-4883-9661-0948B77583CE} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+		{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+		{FF6BF864-027F-464D-8031-F861684067BD} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+		{03D682A2-CB84-4EE8-A123-149AA6773613} = {91E10B33-E6E8-43FC-A248-760D86F30859}
+	EndGlobalSection
+EndGlobal
