@@ -1,16 +1,16 @@
 ﻿using Mapster;
 using MediatR;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Extensions;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Contacts.Queries.GetAllWithPagination
+namespace Fiker.Application.Features.Contacts.Queries.GetAllWithPagination
 {
     public record GetAllContactUsWithPaginationQuery : PaginationRequest, IRequest<PaginatedResponse<GetAllContactUsWithPaginationQueryDto>>;
 

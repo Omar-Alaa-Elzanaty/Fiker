@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SquadAsService.Application.Features.JobTitles.Commands.Create
+namespace Fiker.Application.Features.JobTitles.Commands.Create
 {
     public class CreateJobTitlesCommandValidator : AbstractValidator<CreateJobTitlesCommand>
     {

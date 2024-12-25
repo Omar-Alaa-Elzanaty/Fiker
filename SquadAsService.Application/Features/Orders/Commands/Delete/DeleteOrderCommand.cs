@@ -1,14 +1,14 @@
 ﻿using MediatR;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadASService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Orders.Commands.Delete
+namespace Fiker.Application.Features.Orders.Commands.Delete
 {
     public record DeleteOrderCommand:IRequest<BaseResponse<string>>
     {
@@ -38,7 +38,9 @@ namespace SquadAsService.Application.Features.Orders.Commands.Delete
                 return BaseResponse<string>.Fail("Order not found");
             }
 
-            _unitOfWork.Repository<Order>().Delete(order);
+            order.IsDeleted = true;
+
+            _unitOfWork.Repository<Order>().UpdateAsync(order);
             await _unitOfWork.SaveAsync();
 
             return BaseResponse<string>.Success("Order deleted.");

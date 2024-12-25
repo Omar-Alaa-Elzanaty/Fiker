@@ -1,10 +1,10 @@
 using Scalar.AspNetCore;
-using SquadAsService.Api;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Infrastructure.Extensions;
-using SquadAsService.Presentation.MiddleWare;
-using SquadAsService.Presistance.Extensions;
-using SquadAsService.Presistance.Seeding;
+using Fiker.Api;
+using Fiker.Application.Extensions;
+using Fiker.Infrastructure.Extensions;
+using Fiker.Presentation.MiddleWare;
+using Fiker.Presistance.Extensions;
+using Fiker.Presistance.Seeding;
 
 var builder = WebApplication.CreateBuilder(args);
 

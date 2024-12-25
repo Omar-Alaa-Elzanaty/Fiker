@@ -1,16 +1,16 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.JobTitles.Queries.GetByTechnologyId
+namespace Fiker.Application.Features.JobTitles.Queries.GetByTechnologyId
 {
     public record GetJobTitleByTechnologyIdQuery:IRequest<BaseResponse<List<GetJobTitleByTechnologyIdQueryDto>>>
     {

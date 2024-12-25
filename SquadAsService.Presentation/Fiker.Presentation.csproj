@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SquadAsService.Infrastructure\SquadAsService.Infrastructure.csproj" />
-    <ProjectReference Include="..\SquadAsService.Presistance\SquadAsService.Presistance.csproj" />
+    <ProjectReference Include="..\SquadAsService.Infrastructure\Fiker.Infrastructure.csproj" />
+    <ProjectReference Include="..\SquadAsService.Presistance\Fiker.Presistance.csproj" />
   </ItemGroup>
 
 </Project>

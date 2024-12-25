@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Contacts.Command.Create
+namespace Fiker.Application.Features.Contacts.Command.Create
 {
     public class CreateContactUsCommandValidtor : AbstractValidator<CreateContactUsCommand>
     {

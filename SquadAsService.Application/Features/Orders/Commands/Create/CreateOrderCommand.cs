@@ -2,12 +2,12 @@
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
-using SquadASService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Fiker.Domain.Domains;
 
-namespace SquadAsService.Application.Features.Orders.Commands.Create
+namespace Fiker.Application.Features.Orders.Commands.Create
 {
     public record CreateOrderCommand : IRequest<BaseResponse<int>>
     {
@@ -19,6 +19,7 @@ namespace SquadAsService.Application.Features.Orders.Commands.Create
         public int AreaId { get; set; }
         public int MarketId { get; set; }
         public int TechnologyId { get; set; }
+        public bool Subscribe { get; set; }
         public List<OrderProfile> Profiles { get; set; }
     }
     public class OrderProfile
@@ -51,6 +52,13 @@ namespace SquadAsService.Application.Features.Orders.Commands.Create
                 .AnyAsync(x => x.AreaId == command.AreaId && x.TechnologyId == command.TechnologyId, cancellationToken))
             {
                 return BaseResponse<int>.Fail("Area and Technology are not related");
+            }
+
+            if (command.Subscribe
+                && await _unitOfWork.Repository<Subscriber>().Entities.AnyAsync(x => x.ContactEmail == command.ContactEmail, cancellationToken))
+            {
+                var subscriber = command.Adapt<Subscriber>();
+                await _unitOfWork.Repository<Subscriber>().AddAsync(subscriber);
             }
 
             var order = command.Adapt<Order>();

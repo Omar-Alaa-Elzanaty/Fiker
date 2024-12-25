@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Contacts.Command.Delete
+namespace Fiker.Application.Features.Contacts.Command.Delete
 {
     public record DeleteContactUsCommand:IRequest<BaseResponse<string>>
     {

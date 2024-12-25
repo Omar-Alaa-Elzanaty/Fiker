@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SquadAsService.Presistance.Migrations
+namespace Fiker.Presistance.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreation : Migration
@@ -21,9 +21,7 @@ namespace SquadAsService.Presistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IconUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,8 +38,8 @@ namespace SquadAsService.Presistance.Migrations
                     ContactEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Telphone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Question = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,8 +53,7 @@ namespace SquadAsService.Presistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,8 +68,7 @@ namespace SquadAsService.Presistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IconUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,8 +98,7 @@ namespace SquadAsService.Presistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IconUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,16 +157,44 @@ namespace SquadAsService.Presistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AreaTechonolgies",
+                columns: table => new
+                {
+                    AreaId = table.Column<int>(type: "int", nullable: false),
+                    TechnologyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AreaTechonolgies", x => new { x.AreaId, x.TechnologyId });
+                    table.ForeignKey(
+                        name: "FK_AreaTechonolgies_Areas_AreaId",
+                        column: x => x.AreaId,
+                        principalTable: "Areas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AreaTechonolgies_Technologies_TechnologyId",
+                        column: x => x.TechnologyId,
+                        principalTable: "Technologies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ContactName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ContactEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Question = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AreaId = table.Column<int>(type: "int", nullable: false),
                     MarketId = table.Column<int>(type: "int", nullable: false),
                     TechnologyId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,6 +213,30 @@ namespace SquadAsService.Presistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Technologies_TechnologyId",
+                        column: x => x.TechnologyId,
+                        principalTable: "Technologies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TechnologyJobTitles",
+                columns: table => new
+                {
+                    TechnologyId = table.Column<int>(type: "int", nullable: false),
+                    JobTitleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TechnologyJobTitles", x => new { x.TechnologyId, x.JobTitleId });
+                    table.ForeignKey(
+                        name: "FK_TechnologyJobTitles_JobTitles_JobTitleId",
+                        column: x => x.JobTitleId,
+                        principalTable: "JobTitles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TechnologyJobTitles_Technologies_TechnologyId",
                         column: x => x.TechnologyId,
                         principalTable: "Technologies",
                         principalColumn: "Id",
@@ -295,18 +342,13 @@ namespace SquadAsService.Presistance.Migrations
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    JobTitleId = table.Column<int>(type: "int", nullable: false),
+                    JobTitle = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrdersJobTitles", x => new { x.OrderId, x.JobTitleId });
-                    table.ForeignKey(
-                        name: "FK_OrdersJobTitles_JobTitles_JobTitleId",
-                        column: x => x.JobTitleId,
-                        principalTable: "JobTitles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_OrdersJobTitles", x => new { x.OrderId, x.JobTitle });
+                    table.CheckConstraint("Quantity_Constrain", "[Quantity] <= 21");
                     table.ForeignKey(
                         name: "FK_OrdersJobTitles_Orders_OrderId",
                         column: x => x.OrderId,
@@ -314,6 +356,11 @@ namespace SquadAsService.Presistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AreaTechonolgies_TechnologyId",
+                table: "AreaTechonolgies",
+                column: "TechnologyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_AreaId",
@@ -331,11 +378,6 @@ namespace SquadAsService.Presistance.Migrations
                 column: "TechnologyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersJobTitles_JobTitleId",
-                table: "OrdersJobTitles",
-                column: "JobTitleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
                 schema: "Accounts",
                 table: "RoleClaims",
@@ -348,6 +390,11 @@ namespace SquadAsService.Presistance.Migrations
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TechnologyJobTitles_JobTitleId",
+                table: "TechnologyJobTitles",
+                column: "JobTitleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
@@ -386,6 +433,9 @@ namespace SquadAsService.Presistance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AreaTechonolgies");
+
+            migrationBuilder.DropTable(
                 name: "ContactUs");
 
             migrationBuilder.DropTable(
@@ -394,6 +444,9 @@ namespace SquadAsService.Presistance.Migrations
             migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "Accounts");
+
+            migrationBuilder.DropTable(
+                name: "TechnologyJobTitles");
 
             migrationBuilder.DropTable(
                 name: "UserClaims",
@@ -412,10 +465,10 @@ namespace SquadAsService.Presistance.Migrations
                 schema: "Accounts");
 
             migrationBuilder.DropTable(
-                name: "JobTitles");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "JobTitles");
 
             migrationBuilder.DropTable(
                 name: "Roles",

@@ -1,7 +1,7 @@
-﻿using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.IBases;
+﻿using Fiker.Domain.Bases;
+using Fiker.Domain.IBases;
 
-namespace SquadAsService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class Market : BaseEntity, IClassification
     {

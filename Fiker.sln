@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.API", "SquadAsService.API\SquadAsService.API.csproj", "{D9BE55BE-2272-4BAE-8278-8161BA79E071}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.API", "SquadAsService.API\Fiker.API.csproj", "{D9BE55BE-2272-4BAE-8278-8161BA79E071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Domain", "SquadASService.Domain\SquadAsService.Domain.csproj", "{18B2292F-E1B8-494C-AD23-175571ADF079}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.Domain", "SquadASService.Domain\Fiker.Domain.csproj", "{18B2292F-E1B8-494C-AD23-175571ADF079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Infrastructure", "SquadAsService.Infrastructure\SquadAsService.Infrastructure.csproj", "{98F65008-DBCD-4883-9661-0948B77583CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.Infrastructure", "SquadAsService.Infrastructure\Fiker.Infrastructure.csproj", "{98F65008-DBCD-4883-9661-0948B77583CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{91E10B33-E6E8-43FC-A248-760D86F30859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Presentation", "SquadAsService.Presentation\SquadAsService.Presentation.csproj", "{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.Presentation", "SquadAsService.Presentation\Fiker.Presentation.csproj", "{925CB3EE-04D9-4D35-BA1E-22CFFE2750DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Presistance", "SquadAsService.Presistance\SquadAsService.Presistance.csproj", "{FF6BF864-027F-464D-8031-F861684067BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.Presistance", "SquadAsService.Presistance\Fiker.Presistance.csproj", "{FF6BF864-027F-464D-8031-F861684067BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquadAsService.Application", "SquadAsService.Application\SquadAsService.Application.csproj", "{03D682A2-CB84-4EE8-A123-149AA6773613}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiker.Application", "SquadAsService.Application\Fiker.Application.csproj", "{03D682A2-CB84-4EE8-A123-149AA6773613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

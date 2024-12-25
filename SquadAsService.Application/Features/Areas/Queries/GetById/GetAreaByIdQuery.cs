@@ -1,14 +1,15 @@
 ﻿using Mapster;
 using MediatR;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
-namespace SquadAsService.Application.Features.Areas.Queries.GetById
+namespace Fiker.Application.Features.Areas.Queries.GetById
 {
-    public record GetAreaByIdQuery : IRequest<BaseResponse<GetAreaByIdQueryDto>>
+    public record GetAreaByIdQuery : IRequest<BaseResponse<List<GetAreaByIdQueryDto>>>
     {
         public int Id { get; set; }
 
@@ -18,7 +19,7 @@ namespace SquadAsService.Application.Features.Areas.Queries.GetById
         }
     }
 
-    internal class GetAreaByIdQueryHandler : IRequestHandler<GetAreaByIdQuery, BaseResponse<GetAreaByIdQueryDto>>
+    internal class GetAreaByIdQueryHandler : IRequestHandler<GetAreaByIdQuery, BaseResponse<List<GetAreaByIdQueryDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
@@ -31,20 +32,28 @@ namespace SquadAsService.Application.Features.Areas.Queries.GetById
             _mediaService = mediaService;
         }
 
-        public async Task<BaseResponse<GetAreaByIdQueryDto>> Handle(GetAreaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<List<GetAreaByIdQueryDto>>> Handle(GetAreaByIdQuery query, CancellationToken cancellationToken)
         {
-            var entity = await _unitOfWork.Repository<Area>().GetByIdAsync(request.Id);
+            var area = await _unitOfWork.Repository<Area>().Entities
+                        .FirstOrDefaultAsync(x => x.Id == query.Id, cancellationToken);
 
-            if (entity == null)
+            if (area == null)
             {
-                return BaseResponse<GetAreaByIdQueryDto>.Fail("Area is not found.", HttpStatusCode.NotFound);
+                return BaseResponse<List<GetAreaByIdQueryDto>>.Fail("Area is not found.", HttpStatusCode.NotFound);
             }
 
-            var area = entity.Adapt<GetAreaByIdQueryDto>();
+            var technologies = await _unitOfWork.Repository<Technology>().Entities
+                            .ProjectToType<GetAreaByIdQueryDto>()
+                            .ToListAsync(cancellationToken);
 
-            area.Techonolgies.ForEach(x => x.IconUrl = _mediaService.GetUrl(x.IconUrl));
+            var areaTechnology = area.Techonolgies.Adapt<List<GetAreaByIdQueryDto>>();
+            areaTechnology.ForEach(x => x.IsAvailable = true);
 
-            return BaseResponse<GetAreaByIdQueryDto>.Success(area);
+            technologies.AddRange(areaTechnology);
+
+            technologies.ForEach(x => x.IconUrl = _mediaService.GetUrl(x.IconUrl));
+
+            return BaseResponse<List<GetAreaByIdQueryDto>>.Success(technologies);
         }
     }
 }

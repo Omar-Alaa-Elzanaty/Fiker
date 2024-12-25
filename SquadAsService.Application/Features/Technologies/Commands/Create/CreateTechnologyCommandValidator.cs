@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Technologies.Commands.Create
+namespace Fiker.Application.Features.Technologies.Commands.Create
 {
     public class CreateTechnologyCommandValidator : AbstractValidator<CreateTechnologyCommand>
     {

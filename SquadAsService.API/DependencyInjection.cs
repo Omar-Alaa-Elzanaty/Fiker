@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-namespace SquadAsService.Api
+namespace Fiker.Api
 {
     public static class DependencyInjection
     {

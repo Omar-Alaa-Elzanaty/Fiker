@@ -1,11 +1,12 @@
-﻿using FluentValidation;
+﻿using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using FluentValidation;
 using Mapster;
 using MediatR;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Microsoft.EntityFrameworkCore;
 
-namespace SquadAsService.Application.Features.Contacts.Command.Create
+namespace Fiker.Application.Features.Contacts.Command.Create
 {
     public record CreateContactUsCommand : IRequest<BaseResponse<int>>
     {
@@ -14,6 +15,7 @@ namespace SquadAsService.Application.Features.Contacts.Command.Create
         public string Telphone { get; set; }
         public string Company { get; set; }
         public string? Question { get; set; }
+        public bool Subscribe { get; set; }
     }
 
     internal class CreateContactUsCommandHandler : IRequestHandler<CreateContactUsCommand, BaseResponse<int>>
@@ -39,6 +41,13 @@ namespace SquadAsService.Application.Features.Contacts.Command.Create
             }
 
             var contactUs = command.Adapt<ContactUs>();
+
+            if (command.Subscribe 
+                && await _unitOfWork.Repository<Subscriber>().Entities.AnyAsync(x => x.ContactEmail == command.ContactEmail,cancellationToken))
+            {
+                var subscriber = command.Adapt<Subscriber>();
+                await _unitOfWork.Repository<Subscriber>().AddAsync(subscriber);
+            }
 
             await _unitOfWork.Repository<ContactUs>().AddAsync(contactUs);
             await _unitOfWork.SaveAsync();

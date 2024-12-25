@@ -2,12 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Domains.Identity;
-using SquadAsService.Presistance.Context;
-using SquadAsService.Presistance.Repo;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Domains.Identity;
+using Fiker.Presistance.Context;
+using Fiker.Presistance.Repo;
 
-namespace SquadAsService.Presistance.Extensions
+namespace Fiker.Presistance.Extensions
 {
     public static class ServicesCollection
     {

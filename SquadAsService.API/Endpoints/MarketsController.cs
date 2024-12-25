@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SquadAsService.Application.Features.Markets.Commands.Create;
-using SquadAsService.Application.Features.Markets.Queries.GetAll;
-using SquadAsService.Domain.Bases;
+using Fiker.Application.Features.Markets.Commands.Create;
+using Fiker.Application.Features.Markets.Queries.GetAll;
+using Fiker.Domain.Bases;
 
-namespace SquadAsService.Api.Endpoints
+namespace Fiker.Api.Endpoints
 {
     public class MarketsController:ApiControllerBase
     {

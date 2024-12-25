@@ -1,11 +1,11 @@
-﻿using SquadAsService.Domain.Domains;
+﻿using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadASService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class OrderJobTitle
     {

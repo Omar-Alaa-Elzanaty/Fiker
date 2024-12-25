@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Authentication.Login
+namespace Fiker.Application.Features.Authentication.Login
 {
     public class LoginQueryDto
     {

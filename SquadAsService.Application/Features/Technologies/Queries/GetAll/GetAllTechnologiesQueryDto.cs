@@ -1,4 +1,4 @@
-﻿namespace SquadAsService.Application.Features.Technologies.Queries.GetAll
+﻿namespace Fiker.Application.Features.Technologies.Queries.GetAll
 {
     public class GetAllTechnologiesQueryDto
     {

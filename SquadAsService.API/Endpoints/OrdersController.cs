@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SquadAsService.Application.Features.Orders.Commands.Create;
-using SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination;
-using SquadAsService.Application.Features.Orders.Queries.GetById;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Constants;
+using Fiker.Application.Features.Orders.Commands.Create;
+using Fiker.Application.Features.Orders.Queries.GetAllWithPagination;
+using Fiker.Application.Features.Orders.Queries.GetById;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Constants;
 
-namespace SquadAsService.Api.Endpoints
+namespace Fiker.Api.Endpoints
 {
     public class OrdersController : ApiControllerBase
     {

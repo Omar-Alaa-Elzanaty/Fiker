@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Areas.Commands.Create
+namespace Fiker.Application.Features.Areas.Commands.Create
 {
     public class CreateAreaCommandValidator : AbstractValidator<CreateAreaCommand>
     {

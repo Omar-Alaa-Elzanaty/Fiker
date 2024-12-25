@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Interfaces.Repo
+namespace Fiker.Application.Interfaces.Repo
 {
     public interface IBaseRepo<T> where T : class
     {

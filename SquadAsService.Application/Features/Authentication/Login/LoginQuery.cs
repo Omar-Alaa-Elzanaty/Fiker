@@ -1,12 +1,12 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains.Identity;
+using Fiker.Application.Interfaces;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains.Identity;
 using System.Net;
 
-namespace SquadAsService.Application.Features.Authentication.Login
+namespace Fiker.Application.Features.Authentication.Login
 {
     public class LoginQuery : IRequest<BaseResponse<LoginQueryDto>>
     {

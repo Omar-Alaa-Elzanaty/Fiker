@@ -1,13 +1,13 @@
 ﻿using Mapster;
-using SquadAsService.Application.Features.Orders.Queries.GetById;
-using SquadASService.Domain.Domains;
+using Fiker.Application.Features.Orders.Queries.GetById;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Comman.Mapping
+namespace Fiker.Application.Comman.Mapping
 {
     public class OrderMapping : IRegister
     {

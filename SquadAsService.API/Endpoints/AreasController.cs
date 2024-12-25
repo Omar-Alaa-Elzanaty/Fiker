@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SquadAsService.Application.Features.Areas.Commands.Create;
-using SquadAsService.Application.Features.Areas.Queries.GetAll;
-using SquadAsService.Application.Features.Areas.Queries.GetByTechnologyId;
-using SquadAsService.Domain.Bases;
+using Fiker.Application.Features.Areas.Commands.Create;
+using Fiker.Application.Features.Areas.Queries.GetAll;
+using Fiker.Application.Features.Areas.Queries.GetByTechnologyId;
+using Fiker.Domain.Bases;
 
-namespace SquadAsService.Api.Endpoints
+namespace Fiker.Api.Endpoints
 {
     public class AreasController : ApiControllerBase
     {

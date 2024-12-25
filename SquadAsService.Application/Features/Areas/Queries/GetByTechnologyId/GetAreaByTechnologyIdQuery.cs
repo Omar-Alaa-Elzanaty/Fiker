@@ -1,11 +1,12 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Microsoft.EntityFrameworkCore.Internal;
 
-namespace SquadAsService.Application.Features.Areas.Queries.GetByTechnologyId
+namespace Fiker.Application.Features.Areas.Queries.GetByTechnologyId
 {
     public record GetAreaByTechnologyIdQuery:IRequest<BaseResponse<List<GetAreaByTechnologyIdQueryDto>>>
     {
@@ -30,7 +31,7 @@ namespace SquadAsService.Application.Features.Areas.Queries.GetByTechnologyId
         {
             var areas = await _unitOfWork.Repository<AreaTechonolgy>().Entities
                       .Where(x => x.TechnologyId == command.TechnologyId)
-                      .Select(x => x.Area)
+                      .Select(x=>x.Area)
                       .ProjectToType<GetAreaByTechnologyIdQueryDto>()
                       .ToListAsync(cancellationToken);
 

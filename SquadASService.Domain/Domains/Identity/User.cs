@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Domains.Identity
+namespace Fiker.Domain.Domains.Identity
 {
     public class User:IdentityUser
     {

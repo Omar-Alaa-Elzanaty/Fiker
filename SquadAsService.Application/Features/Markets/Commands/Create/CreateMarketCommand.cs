@@ -3,14 +3,15 @@ using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
-using SquadAsService.Domain.Dtos;
+using Fiker.Application.Extensions;
+using Fiker.Application.Interfaces;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Fiker.Domain.Dtos;
+using Hangfire;
 
-namespace SquadAsService.Application.Features.Markets.Commands.Create
+namespace Fiker.Application.Features.Markets.Commands.Create
 {
     public record CreateMarketCommand : IRequest<BaseResponse<int>>
     {
@@ -22,16 +23,19 @@ namespace SquadAsService.Application.Features.Markets.Commands.Create
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
+        private readonly ICategoryTasks _categoryTasks;
         private readonly IValidator<CreateMarketCommand> _validator;
 
         public CreateMarketCommandHandler(
             IUnitOfWork unitOfWork,
             IValidator<CreateMarketCommand> validator,
-            IMediaService mediaService)
+            IMediaService mediaService,
+            ICategoryTasks categoryTasks)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _mediaService = mediaService;
+            _categoryTasks = categoryTasks;
         }
 
         public async Task<BaseResponse<int>> Handle(CreateMarketCommand command, CancellationToken cancellationToken)
@@ -54,6 +58,9 @@ namespace SquadAsService.Application.Features.Markets.Commands.Create
 
             await _unitOfWork.Repository<Market>().AddAsync(market);
             await _unitOfWork.SaveAsync();
+
+            BackgroundJob.Enqueue(() => _categoryTasks.SendNewMarket(command.Name).GetAwaiter());
+
 
             return BaseResponse<int>.Success(market.Id);
         }

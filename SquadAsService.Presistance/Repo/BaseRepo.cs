@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Presistance.Context;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Presistance.Context;
 
-namespace SquadAsService.Presistance.Repo
+namespace Fiker.Presistance.Repo
 {
     public class BaseRepo<T> : IBaseRepo<T> where T : class
     {

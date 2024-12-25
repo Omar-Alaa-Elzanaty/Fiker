@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Areas.Queries.GetAll
+namespace Fiker.Application.Features.Areas.Queries.GetAll
 {
     public class GetAllAreasQueryDto
     {

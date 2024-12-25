@@ -1,7 +1,7 @@
-﻿using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+﻿using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 
-namespace SquadASService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class Order : BaseEntity
     {
@@ -14,6 +14,7 @@ namespace SquadASService.Domain.Domains
         public virtual Area Area { get; set; }
         public int MarketId { get; set; }
         public virtual Market Market { get; set; }
+        public bool IsDeleted { get; set; }
         public int TechnologyId { get; set; }
         public virtual Technology Technology { get; set; }
         public virtual List<OrderJobTitle> Profiles { get; set; }

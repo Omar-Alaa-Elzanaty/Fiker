@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Contacts.Queries.GetAllWithPagination
+namespace Fiker.Application.Features.Contacts.Queries.GetAllWithPagination
 {
     public class GetAllContactUsWithPaginationQueryDto
     {

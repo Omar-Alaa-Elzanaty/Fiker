@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
-using SquadAsService.Domain.Extensions;
+using Fiker.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Bases
+namespace Fiker.Domain.Bases
 {
     public class BaseResponse<T>
     {
@@ -75,7 +75,7 @@ namespace SquadAsService.Domain.Bases
             return response;
         }
 
-        public static BaseResponse<T> ValidationFailure(List<IdentityError> identityErrors, HttpStatusCode httpStatusCode)
+        public static BaseResponse<T> ValidationFailure(List<IdentityError> identityErrors, HttpStatusCode httpStatusCode=HttpStatusCode.UnprocessableEntity)
         {
             List<string> errors = identityErrors.GetErrorsList();
 

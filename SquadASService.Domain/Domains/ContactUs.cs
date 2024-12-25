@@ -1,6 +1,6 @@
-﻿using SquadAsService.Domain.Bases;
+﻿using Fiker.Domain.Bases;
 
-namespace SquadAsService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class ContactUs : BaseEntity
     {

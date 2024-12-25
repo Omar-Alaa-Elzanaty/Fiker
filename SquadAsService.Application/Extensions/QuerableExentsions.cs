@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SquadAsService.Domain.Bases;
+using Fiker.Domain.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Extensions
+namespace Fiker.Application.Extensions
 {
     public static class QuerableExentsions
     {

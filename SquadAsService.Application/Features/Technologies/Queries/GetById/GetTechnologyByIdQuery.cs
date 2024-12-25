@@ -1,13 +1,13 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System.Net;
 
-namespace SquadAsService.Application.Features.Technologies.Queries.GetById
+namespace Fiker.Application.Features.Technologies.Queries.GetById
 {
     public class GetTechnologyByIdQuery : IRequest<BaseResponse<GetTechnologyByIdQueryDto>>
     {

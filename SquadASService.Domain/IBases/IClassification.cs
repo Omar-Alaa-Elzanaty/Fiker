@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.IBases
+namespace Fiker.Domain.IBases
 {
     public interface IClassification
     {

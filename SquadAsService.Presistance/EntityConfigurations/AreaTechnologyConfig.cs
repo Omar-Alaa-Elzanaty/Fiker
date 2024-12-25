@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SquadAsService.Domain.Domains;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Presistance.EntityConfigurations
+namespace Fiker.Presistance.EntityConfigurations
 {
     internal class AreaTechnologyConfig : IEntityTypeConfiguration<AreaTechonolgy>
     {

@@ -1,6 +1,6 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Http;
-using SquadAsService.Domain.Bases;
+using Fiker.Domain.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Presentation.MiddleWare
+namespace Fiker.Presentation.MiddleWare
 {
     public class GlobalErrorHandlerMiddleware
     {

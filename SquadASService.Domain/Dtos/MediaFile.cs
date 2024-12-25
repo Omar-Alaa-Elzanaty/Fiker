@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Dtos
+namespace Fiker.Domain.Dtos
 {
     public class MediaFile
     {

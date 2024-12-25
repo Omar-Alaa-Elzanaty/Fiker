@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SquadAsService.Application.Features.Orders.Commands.Create
+namespace Fiker.Application.Features.Orders.Commands.Create
 {
     public class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
     {

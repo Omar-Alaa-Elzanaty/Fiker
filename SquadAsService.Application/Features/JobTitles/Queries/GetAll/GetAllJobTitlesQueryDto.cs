@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.JobTitles.Queries.GetAll
+namespace Fiker.Application.Features.JobTitles.Queries.GetAll
 {
     public class GetAllJobTitlesQueryDto
     {

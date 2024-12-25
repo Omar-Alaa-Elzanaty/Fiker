@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SquadAsService.Application.Features.Markets.Commands.Create
+namespace Fiker.Application.Features.Markets.Commands.Create
 {
     public class CreateMarketCommandValidator : AbstractValidator<CreateMarketCommand>
     {

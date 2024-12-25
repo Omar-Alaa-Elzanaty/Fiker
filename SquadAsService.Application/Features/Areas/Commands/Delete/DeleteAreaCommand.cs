@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System.Net;
 
-namespace SquadAsService.Application.Features.Areas.Commands.Delete
+namespace Fiker.Application.Features.Areas.Commands.Delete
 {
     public class DeleteAreaCommand : IRequest<BaseResponse<string>>
     {

@@ -1,8 +1,8 @@
 ﻿using Mapster;
-using SquadAsService.Application.Features.Orders.Queries.GetById;
-using SquadASService.Domain.Domains;
+using Fiker.Application.Features.Orders.Queries.GetById;
+using Fiker.Domain.Domains;
 
-namespace SquadAsService.Application.Comman.Mapping
+namespace Fiker.Application.Comman.Mapping
 {
     public class OrderJobTitleMapping : IRegister
     {

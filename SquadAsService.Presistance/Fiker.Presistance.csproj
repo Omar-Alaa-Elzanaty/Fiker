@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SquadAsService.Application\SquadAsService.Application.csproj" />
+    <ProjectReference Include="..\SquadAsService.Application\Fiker.Application.csproj" />
   </ItemGroup>
 
 </Project>

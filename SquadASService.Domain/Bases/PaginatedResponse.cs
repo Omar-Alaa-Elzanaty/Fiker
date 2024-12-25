@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using SquadAsService.Domain.Extensions;
+using Fiker.Domain.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Bases
+namespace Fiker.Domain.Bases
 {
     public class PaginatedResponse<T>:BaseResponse<List<T>>
     {

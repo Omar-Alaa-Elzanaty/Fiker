@@ -1,11 +1,11 @@
 ﻿using Mapster;
 using MediatR;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadASService.Domain.Domains;
+using Fiker.Application.Extensions;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 
-namespace SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination
+namespace Fiker.Application.Features.Orders.Queries.GetAllWithPagination
 {
     public record GetAllOrdersWithPaginationQuery : PaginationRequest, IRequest<BaseResponse<List<GetAllOrdersWithPaginationQueryDto>>>;
 

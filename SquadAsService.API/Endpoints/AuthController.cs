@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SquadAsService.Api.Endpoints;
-using SquadAsService.Application.Features.Authentication.Login;
-using SquadAsService.Domain.Bases;
+using Fiker.Api.Endpoints;
+using Fiker.Application.Features.Authentication.Login;
+using Fiker.Domain.Bases;
 
-namespace SquadAsService.API.Endpoints
+namespace Fiker.API.Endpoints
 {
     public class AuthController:ApiControllerBase
     {

@@ -1,4 +1,4 @@
-﻿namespace SquadAsService.Domain.Domains
+﻿namespace Fiker.Domain.Domains
 {
     public class AreaTechonolgy
     {

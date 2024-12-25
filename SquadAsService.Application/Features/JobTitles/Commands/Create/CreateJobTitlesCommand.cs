@@ -2,12 +2,14 @@
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Extensions;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Hangfire;
+using Fiker.Application.Interfaces;
 
-namespace SquadAsService.Application.Features.JobTitles.Commands.Create
+namespace Fiker.Application.Features.JobTitles.Commands.Create
 {
     public record CreateJobTitlesCommand : IRequest<BaseResponse<int>>
     {
@@ -17,14 +19,17 @@ namespace SquadAsService.Application.Features.JobTitles.Commands.Create
     internal class CreateJobTitlesCommandHandler : IRequestHandler<CreateJobTitlesCommand, BaseResponse<int>>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICategoryTasks _categoryTasks;
         private readonly IValidator<CreateJobTitlesCommand> _validator;
 
         public CreateJobTitlesCommandHandler(
             IUnitOfWork unitOfWork,
-            IValidator<CreateJobTitlesCommand> validator)
+            IValidator<CreateJobTitlesCommand> validator,
+            ICategoryTasks categoryTasks)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
+            _categoryTasks = categoryTasks;
         }
 
         public async Task<BaseResponse<int>> Handle(CreateJobTitlesCommand command, CancellationToken cancellationToken)
@@ -45,6 +50,9 @@ namespace SquadAsService.Application.Features.JobTitles.Commands.Create
 
             await _unitOfWork.Repository<JobTitle>().AddAsync(jobTitle);
             await _unitOfWork.SaveAsync();
+
+            BackgroundJob.Enqueue(() => _categoryTasks.SendNewProfile(command.Name).GetAwaiter());
+
 
             return BaseResponse<int>.Success(jobTitle.Id);
         }

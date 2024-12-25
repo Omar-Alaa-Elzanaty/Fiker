@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Presistance.Extensions
+namespace Fiker.Presistance.Extensions
 {
     public static class ModelBuilderExtensions
     {

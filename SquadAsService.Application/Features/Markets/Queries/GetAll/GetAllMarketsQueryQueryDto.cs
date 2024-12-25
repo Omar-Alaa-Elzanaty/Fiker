@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Markets.Queries.GetAll
+namespace Fiker.Application.Features.Markets.Queries.GetAll
 {
     public class GetAllMarketsQueryQueryDto
     {

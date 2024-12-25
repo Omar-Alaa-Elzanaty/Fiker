@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.Technologies.Queries.GetByAreaId
+namespace Fiker.Application.Features.Technologies.Queries.GetByAreaId
 {
     public class GetTechnologiesByAreaIdQueryDto
     {

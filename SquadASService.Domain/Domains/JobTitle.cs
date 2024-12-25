@@ -1,7 +1,7 @@
-﻿using SquadAsService.Domain.Bases;
-using SquadASService.Domain.Domains;
+﻿using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 
-namespace SquadAsService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class JobTitle : BaseEntity
     {

@@ -1,17 +1,17 @@
 ﻿using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
+using Fiker.Application.Interfaces;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.JobTitles.Queries.GetAll
+namespace Fiker.Application.Features.JobTitles.Queries.GetAll
 {
     public record GetAllJobTitlesQuery:IRequest<BaseResponse<List<GetAllJobTitlesQueryDto>>>;
 

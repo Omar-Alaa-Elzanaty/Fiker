@@ -2,14 +2,15 @@
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Application.Extensions;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
-using SquadAsService.Domain.Dtos;
+using Fiker.Application.Extensions;
+using Fiker.Application.Interfaces;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Fiker.Domain.Dtos;
+using Hangfire;
 
-namespace SquadAsService.Application.Features.Technologies.Commands.Create
+namespace Fiker.Application.Features.Technologies.Commands.Create
 {
     public record CreateTechnologyCommand : IRequest<BaseResponse<int>>
     {
@@ -22,16 +23,19 @@ namespace SquadAsService.Application.Features.Technologies.Commands.Create
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
+        private readonly ICategoryTasks _categoryTasks;
         private readonly IValidator<CreateTechnologyCommand> _validator;
 
         public CreateTechnologyCommandHandler(
             IUnitOfWork unitOfWork,
             IValidator<CreateTechnologyCommand> validator,
-            IMediaService mediaService)
+            IMediaService mediaService,
+            ICategoryTasks categoryTasks)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _mediaService = mediaService;
+            _categoryTasks = categoryTasks;
         }
 
         public async Task<BaseResponse<int>> Handle(CreateTechnologyCommand command, CancellationToken cancellationToken)
@@ -71,6 +75,8 @@ namespace SquadAsService.Application.Features.Technologies.Commands.Create
 
             await _unitOfWork.Repository<Technology>().AddAsync(technology);
             await _unitOfWork.SaveAsync();
+
+            BackgroundJob.Enqueue(() => _categoryTasks.SendNewTechnology(command.Name).GetAwaiter());
 
             return BaseResponse<int>.Success(technology.Id);
         }

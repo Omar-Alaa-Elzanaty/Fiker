@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Domains
+namespace Fiker.Domain.Domains
 {
     public class TechnologyJobTitle
     {

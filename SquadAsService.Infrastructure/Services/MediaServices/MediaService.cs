@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using SquadAsService.Application.Interfaces;
-using SquadAsService.Domain.Dtos;
+using Fiker.Application.Interfaces;
+using Fiker.Domain.Dtos;
 
-namespace SquadAsService.Infrastructure.Services.MediaServices
+namespace Fiker.Infrastructure.Services.MediaServices
 {
     public class MediaService : IMediaService
     {

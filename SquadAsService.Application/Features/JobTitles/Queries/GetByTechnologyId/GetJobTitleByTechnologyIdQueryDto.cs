@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Features.JobTitles.Queries.GetByTechnologyId
+namespace Fiker.Application.Features.JobTitles.Queries.GetByTechnologyId
 {
     public class GetJobTitleByTechnologyIdQueryDto
     {

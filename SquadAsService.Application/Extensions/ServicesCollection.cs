@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Application.Extensions
+namespace Fiker.Application.Extensions
 {
     public static class ServicesCollection
     {

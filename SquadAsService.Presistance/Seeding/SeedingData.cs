@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SquadAsService.Application.Interfaces.Repo;
-using SquadAsService.Domain.Constants;
-using SquadAsService.Domain.Domains.Identity;
-using SquadAsService.Presistance.Context;
+using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Constants;
+using Fiker.Domain.Domains.Identity;
+using Fiker.Presistance.Context;
 
-namespace SquadAsService.Presistance.Seeding
+namespace Fiker.Presistance.Seeding
 {
     public class SeedingData
     {
@@ -24,6 +24,7 @@ namespace SquadAsService.Presistance.Seeding
 
                 var unitOfWork = service.GetRequiredService<IUnitOfWork>();
 
+                await roleManager.CreateAsync(new IdentityRole(Roles.SuperAdmin));
                 await roleManager.CreateAsync(new IdentityRole(Roles.Admin));
 
                 var admin = new User
@@ -35,7 +36,7 @@ namespace SquadAsService.Presistance.Seeding
 
                 await userManager.CreateAsync(admin, "Admin@123");
 
-                await userManager.AddToRoleAsync(admin, Roles.Admin);
+                await userManager.AddToRoleAsync(admin, Roles.SuperAdmin);
             }
         }
     }

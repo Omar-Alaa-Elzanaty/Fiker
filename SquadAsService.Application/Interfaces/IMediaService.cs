@@ -1,6 +1,6 @@
-﻿using SquadAsService.Domain.Dtos;
+﻿using Fiker.Domain.Dtos;
 
-namespace SquadAsService.Application.Interfaces
+namespace Fiker.Application.Interfaces
 {
     public interface IMediaService
     {

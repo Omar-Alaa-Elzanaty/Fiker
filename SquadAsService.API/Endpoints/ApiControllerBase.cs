@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SquadAsService.Api.Endpoints
+namespace Fiker.Api.Endpoints
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SquadAsService.Domain.Bases
+namespace Fiker.Domain.Bases
 {
     public record PaginationRequest
     {

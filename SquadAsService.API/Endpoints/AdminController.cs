@@ -1,26 +1,27 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SquadAsService.Api.Endpoints;
-using SquadAsService.Application.Features.Areas.Commands.Create;
-using SquadAsService.Application.Features.Areas.Commands.Delete;
-using SquadAsService.Application.Features.Areas.Queries.GetById;
-using SquadAsService.Application.Features.Contacts.Command.Delete;
-using SquadAsService.Application.Features.Contacts.Queries.GetAllWithPagination;
-using SquadAsService.Application.Features.JobTitles.Commands.Create;
-using SquadAsService.Application.Features.Markets.Commands.Create;
-using SquadAsService.Application.Features.Markets.Commands.Delete;
-using SquadAsService.Application.Features.Orders.Commands.Delete;
-using SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination;
-using SquadAsService.Application.Features.Orders.Queries.GetById;
-using SquadAsService.Application.Features.Technologies.Commands.Create;
-using SquadAsService.Application.Features.Technologies.Commands.Delete;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Constants;
+using Fiker.Api.Endpoints;
+using Fiker.Application.Features.Areas.Commands.Create;
+using Fiker.Application.Features.Areas.Commands.Delete;
+using Fiker.Application.Features.Areas.Queries.GetById;
+using Fiker.Application.Features.Contacts.Command.Delete;
+using Fiker.Application.Features.Contacts.Queries.GetAllWithPagination;
+using Fiker.Application.Features.JobTitles.Commands.Create;
+using Fiker.Application.Features.Markets.Commands.Create;
+using Fiker.Application.Features.Markets.Commands.Delete;
+using Fiker.Application.Features.Orders.Commands.Delete;
+using Fiker.Application.Features.Orders.Queries.GetAllWithPagination;
+using Fiker.Application.Features.Orders.Queries.GetById;
+using Fiker.Application.Features.Technologies.Commands.Create;
+using Fiker.Application.Features.Technologies.Commands.Delete;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Constants;
+using Fiker.Application.Features.Admin.Commands.Create;
 
-namespace SquadAsService.API.Endpoints
+namespace Fiker.API.Endpoints
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = $"{Roles.Admin}")]
     [Route("api/admin")]
     public class AdminController : ApiControllerBase
     {
@@ -50,7 +51,7 @@ namespace SquadAsService.API.Endpoints
         }
 
         [HttpGet("areas/{id}")]
-        public async Task<ActionResult<BaseResponse<GetAreaByIdQueryDto>>> GetAreaById([FromRoute] int id)
+        public async Task<ActionResult<BaseResponse<List<GetAreaByIdQueryDto>>>> GetAreaById([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new GetAreaByIdQuery(id)));
         }
@@ -71,12 +72,6 @@ namespace SquadAsService.API.Endpoints
         public async Task<ActionResult<BaseResponse<int>>> CreateTechnology([FromBody] CreateTechnologyCommand command)
         {
             return Ok(await _mediator.Send(command));
-        }
-
-        [HttpDelete("areas/{id}")]
-        public async Task<ActionResult<BaseResponse<string>>> DeleteArea([FromRoute] int id)
-        {
-            return Ok(await _mediator.Send(new DeleteAreaCommand(id)));
         }
 
         [HttpGet("contactUs/pagination")]

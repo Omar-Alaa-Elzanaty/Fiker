@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using Fiker.Domain.Domains.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SquadAsService.Domain.Bases;
-using SquadAsService.Domain.Domains;
-using SquadAsService.Domain.Domains.Identity;
-using SquadAsService.Presistance.Extensions;
-using SquadASService.Domain.Domains;
 using System.Reflection;
 
-namespace SquadAsService.Presistance.Context
+namespace Fiker.Presistance.Context
 {
     public class SquadDb : IdentityDbContext<User>
     {
@@ -33,7 +31,7 @@ namespace SquadAsService.Presistance.Context
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "Accounts");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "Accounts");
 
-            builder.ApplyGlobalFilters<BaseEntity>(x => !x.IsDeleted);
+            //builder.ApplyGlobalFilters<BaseEntity>(x => !x.IsDeleted);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
@@ -49,22 +47,22 @@ namespace SquadAsService.Presistance.Context
                 entity.CreatedAt = DateTime.Now;
             }
 
-            foreach (var entity in ChangeTracker
-                .Entries()
-                .Where(x => x.Entity is BaseEntity && x.State == EntityState.Deleted)
-                .Select(x => x.Entity)
-                .Cast<BaseEntity>())
-            {
-                entity.IsDeleted = true;
-            }
+            //foreach (var entity in ChangeTracker
+            //    .Entries()
+            //    .Where(x => x.Entity is BaseEntity && x.State == EntityState.Deleted)
+            //    .Select(x => x.Entity)
+            //    .Cast<BaseEntity>())
+            //{
+            //    entity.IsDeleted = true;
+            //}
 
-            foreach (var entity in ChangeTracker
-                .Entries()
-                .Where(x => x.Entity is BaseEntity && x.State == EntityState.Deleted))
-            {
-                entity.State = EntityState.Modified;
-                typeof(BaseEntity).GetProperty("IsDeleted")!.SetValue(entity.Entity, true);
-            }
+            //foreach (var entity in ChangeTracker
+            //    .Entries()
+            //    .Where(x => x.Entity is BaseEntity && x.State == EntityState.Deleted))
+            //{
+            //    entity.State = EntityState.Modified;
+            //    typeof(BaseEntity).GetProperty("IsDeleted")!.SetValue(entity.Entity, true);
+            //}
 
             return base.SaveChangesAsync(cancellationToken);
         }
@@ -78,5 +76,6 @@ namespace SquadAsService.Presistance.Context
         public DbSet<ContactUs> ContactUs { get; set; }
         public DbSet<AreaTechonolgy> AreaTechonolgies { get; set; }
         public DbSet<TechnologyJobTitle> TechnologyJobTitles { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }
