@@ -13,6 +13,7 @@ namespace SquadAsService.Application.Features.Contacts.Command.Create
         public string ContactEmail { get; set; }
         public string Telphone { get; set; }
         public string Company { get; set; }
+        public string? Question { get; set; }
     }
 
     internal class CreateContactUsCommandHandler : IRequestHandler<CreateContactUsCommand, BaseResponse<int>>

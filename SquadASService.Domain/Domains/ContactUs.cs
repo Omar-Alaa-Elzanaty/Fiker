@@ -8,5 +8,6 @@ namespace SquadAsService.Domain.Domains
         public string ContactEmail { get; set; }
         public string Telphone { get; set; }
         public string Company { get; set; }
+        public string? Question { get; set; }
     }
 }
