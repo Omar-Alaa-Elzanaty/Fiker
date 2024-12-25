@@ -14,9 +14,6 @@ namespace Fiker.Application.Comman.Mapping
     {
         public void Register(TypeAdapterConfig config)
         {
-            config.NewConfig<AreaTechonolgy, TechAreaDto>()
-                .Map(dest => dest.Id, src => src.AreaId)
-                .Map(dest => dest.Name, src => src.Area.Name);
         }
     }
 }

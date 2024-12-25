@@ -24,7 +24,7 @@ namespace Fiker.Api.Endpoints
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BaseResponse<GetTechnologyByIdQueryDto>>>GetById([FromRoute] int id)
+        public async Task<ActionResult<BaseResponse<List<GetTechnologyByIdQueryDto>>>>GetById([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new GetTechnologyByIdQuery(id)));
         }

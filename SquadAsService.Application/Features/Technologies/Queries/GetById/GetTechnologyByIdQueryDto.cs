@@ -10,12 +10,6 @@ namespace Fiker.Application.Features.Technologies.Queries.GetById
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string IconUrl { get; set; }
-    }
-
-    public class TechAreaDto
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

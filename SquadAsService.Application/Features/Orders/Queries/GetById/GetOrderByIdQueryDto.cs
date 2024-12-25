@@ -13,7 +13,7 @@ namespace Fiker.Application.Features.Orders.Queries.GetById
         public string Area { get; set; }
         public string Market { get; set; }
         public string Technology { get; set; }
-        public List<string> OrderProfiles { get; set; }
+        public List<OrderProfileDto> Profiles { get; set; }
     }
 
     public class OrderProfileDto

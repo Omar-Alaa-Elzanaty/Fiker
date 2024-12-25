@@ -9,7 +9,7 @@ using System.Net;
 
 namespace Fiker.Application.Features.Technologies.Queries.GetById
 {
-    public class GetTechnologyByIdQuery : IRequest<BaseResponse<GetTechnologyByIdQueryDto>>
+    public class GetTechnologyByIdQuery : IRequest<BaseResponse<List<GetTechnologyByIdQueryDto>>>
     {
         public int Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace Fiker.Application.Features.Technologies.Queries.GetById
         }
     }
 
-    internal class GetTechnologyByIdQueryHandler : IRequestHandler<GetTechnologyByIdQuery, BaseResponse<GetTechnologyByIdQueryDto>>
+    internal class GetTechnologyByIdQueryHandler : IRequestHandler<GetTechnologyByIdQuery, BaseResponse<List<GetTechnologyByIdQueryDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
@@ -32,21 +32,27 @@ namespace Fiker.Application.Features.Technologies.Queries.GetById
             _mediaService = mediaService;
         }
 
-        public async Task<BaseResponse<GetTechnologyByIdQueryDto>> Handle(GetTechnologyByIdQuery request, CancellationToken cancellationToken)
+        public async Task<BaseResponse<List<GetTechnologyByIdQueryDto>>> Handle(GetTechnologyByIdQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _unitOfWork.Repository<Technology>().Entities
+            var technology = await _unitOfWork.Repository<Technology>().Entities
                         .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-            if (entity == null)
+            if (technology == null)
             {
-                return BaseResponse<GetTechnologyByIdQueryDto>.Fail("Technology not found.", HttpStatusCode.NotFound);
+                return BaseResponse<List<GetTechnologyByIdQueryDto>>.Fail("Technology not found.", HttpStatusCode.NotFound);
             }
 
-            var techonology = entity.Adapt<GetTechnologyByIdQueryDto>();
+            var jobTitles =await _unitOfWork.Repository<JobTitle>().Entities
+                          .ProjectToType<GetTechnologyByIdQueryDto>()
+                          .ToListAsync(cancellationToken);
 
-            techonology.IconUrl = _mediaService.GetUrl(entity.IconUrl)!;
+            var technologyJobTitle = technology.JobTitles.Adapt<List<GetTechnologyByIdQueryDto>>();
 
-            return BaseResponse<GetTechnologyByIdQueryDto>.Success(techonology);
+            technologyJobTitle.ForEach(x => x.IsAvailable = true);
+
+            jobTitles.AddRange(technologyJobTitle);
+
+            return BaseResponse<List<GetTechnologyByIdQueryDto>>.Success(jobTitles);
         }
     }
 }
