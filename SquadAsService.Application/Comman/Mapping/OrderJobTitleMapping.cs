@@ -8,8 +8,8 @@ namespace SquadAsService.Application.Comman.Mapping
     {
         public void Register(TypeAdapterConfig config)
         {
-            config.NewConfig<OrderJobTitle,OrderProfileDto>()
-                .Map(dest => dest.JobTitle, src => src.JobTitle.Name);
+            config.NewConfig<OrderJobTitle, OrderProfileDto>()
+                .Map(dest => dest.JobTitle, src => src.JobTitle);
         }
     }
 }

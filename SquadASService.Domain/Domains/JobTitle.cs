@@ -7,6 +7,5 @@ namespace SquadAsService.Domain.Domains
     {
         public string Name { get; set; }
         public virtual List<TechnologyJobTitle> Technologies { get; set; }
-        public virtual List<OrderJobTitle> JobTitles { get; set; }
     }
 }

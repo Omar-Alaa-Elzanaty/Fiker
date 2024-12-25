@@ -11,8 +11,7 @@ namespace SquadASService.Domain.Domains
     {
         public int OrderId { get; set; }
         public virtual Order Order { get; set; }
-        public  int JobTitleId { get; set; }
-        public virtual JobTitle JobTitle { get; set; }
+        public string JobTitle { get; set; }
         public int Quantity { get; set; }
     }
 }

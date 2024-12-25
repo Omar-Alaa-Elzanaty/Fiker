@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SquadAsService.Presistance.Context;
 
@@ -11,9 +12,11 @@ using SquadAsService.Presistance.Context;
 namespace SquadAsService.Presistance.Migrations
 {
     [DbContext(typeof(SquadDb))]
-    partial class SquadDbModelSnapshot : ModelSnapshot
+    [Migration("20241225124045_UpdateJobOrder1")]
+    partial class UpdateJobOrder1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

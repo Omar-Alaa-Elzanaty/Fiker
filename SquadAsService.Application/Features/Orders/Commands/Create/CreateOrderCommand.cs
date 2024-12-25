@@ -23,7 +23,7 @@ namespace SquadAsService.Application.Features.Orders.Commands.Create
     }
     public class OrderProfile
     {
-        public int JobTitleId { get; set; }
+        public string JobTitle { get; set; }
         public int Quantity { get; set; }
 
     }

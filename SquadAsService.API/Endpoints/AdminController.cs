@@ -10,6 +10,7 @@ using SquadAsService.Application.Features.Contacts.Queries.GetAllWithPagination;
 using SquadAsService.Application.Features.JobTitles.Commands.Create;
 using SquadAsService.Application.Features.Markets.Commands.Create;
 using SquadAsService.Application.Features.Markets.Commands.Delete;
+using SquadAsService.Application.Features.Orders.Commands.Delete;
 using SquadAsService.Application.Features.Orders.Queries.GetAllWithPagination;
 using SquadAsService.Application.Features.Orders.Queries.GetById;
 using SquadAsService.Application.Features.Technologies.Commands.Create;
@@ -101,6 +102,12 @@ namespace SquadAsService.API.Endpoints
         public async Task<ActionResult<BaseResponse<string>>> DeleteTechnology([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new DeleteTechnologyCommand(id)));
+        }
+
+        [HttpDelete("orders/{id}")]
+        public async Task<ActionResult<BaseResponse<string>>> DeleteOrder([FromRoute] int id)
+        {
+            return Ok(await _mediator.Send(new DeleteOrderCommand(id)));
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SquadAsService.Presistance.Context;
 
@@ -11,9 +12,11 @@ using SquadAsService.Presistance.Context;
 namespace SquadAsService.Presistance.Migrations
 {
     [DbContext(typeof(SquadDb))]
-    partial class SquadDbModelSnapshot : ModelSnapshot
+    [Migration("20241225123803_UpdateJobOrder")]
+    partial class UpdateJobOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,25 +211,6 @@ namespace SquadAsService.Presistance.Migrations
                     b.HasIndex("TechnologyId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("SquadASService.Domain.Domains.OrderJobTitle", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("JobTitle")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId", "JobTitle");
-
-                    b.ToTable("OrdersJobTitles", t =>
-                        {
-                            t.HasCheckConstraint("Quantity_Constrain", "[Quantity] <= 21");
-                        });
                 });
 
             modelBuilder.Entity("SquadAsService.Domain.Domains.Area", b =>
@@ -548,17 +532,6 @@ namespace SquadAsService.Presistance.Migrations
                     b.Navigation("Technology");
                 });
 
-            modelBuilder.Entity("SquadASService.Domain.Domains.OrderJobTitle", b =>
-                {
-                    b.HasOne("SquadASService.Domain.Domains.Order", "Order")
-                        .WithMany("Profiles")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("SquadAsService.Domain.Domains.AreaTechonolgy", b =>
                 {
                     b.HasOne("SquadAsService.Domain.Domains.Area", "Area")
@@ -595,11 +568,6 @@ namespace SquadAsService.Presistance.Migrations
                     b.Navigation("JobTitle");
 
                     b.Navigation("Technology");
-                });
-
-            modelBuilder.Entity("SquadASService.Domain.Domains.Order", b =>
-                {
-                    b.Navigation("Profiles");
                 });
 
             modelBuilder.Entity("SquadAsService.Domain.Domains.Area", b =>

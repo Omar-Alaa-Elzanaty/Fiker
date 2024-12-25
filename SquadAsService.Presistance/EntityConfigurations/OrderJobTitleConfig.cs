@@ -13,7 +13,7 @@ namespace SquadAsService.Presistance.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderJobTitle> builder)
         {
-            builder.HasKey(x => new {x.OrderId, x.JobTitleId });
+            builder.HasKey(x => new { x.OrderId, x.JobTitle });
 
             builder.ToTable(x => x.HasCheckConstraint("Quantity_Constrain", "[Quantity] <= 21"));
         }
