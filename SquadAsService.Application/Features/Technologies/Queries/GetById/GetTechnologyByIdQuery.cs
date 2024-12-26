@@ -1,10 +1,10 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces;
+﻿using Fiker.Application.Interfaces;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace Fiker.Application.Features.Technologies.Queries.GetById
@@ -42,11 +42,12 @@ namespace Fiker.Application.Features.Technologies.Queries.GetById
                 return BaseResponse<List<GetTechnologyByIdQueryDto>>.Fail("Technology not found.", HttpStatusCode.NotFound);
             }
 
-            var jobTitles =await _unitOfWork.Repository<JobTitle>().Entities
+            var jobTitles = await _unitOfWork.Repository<JobTitle>().Entities
+                          .Where(x => !technology.JobTitles.Select(x => x.JobTitleId).Contains(x.Id))
                           .ProjectToType<GetTechnologyByIdQueryDto>()
                           .ToListAsync(cancellationToken);
 
-            var technologyJobTitle = technology.JobTitles.Adapt<List<GetTechnologyByIdQueryDto>>();
+            var technologyJobTitle = technology.JobTitles.Select(x=>x.JobTitle).ToList().Adapt<List<GetTechnologyByIdQueryDto>>();
 
             technologyJobTitle.ForEach(x => x.IsAvailable = true);
 

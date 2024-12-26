@@ -23,12 +23,6 @@ namespace Fiker.Api.Endpoints
             return Ok(await _mediator.Send(new GetAllTechnologiesQuery()));
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<BaseResponse<List<GetTechnologyByIdQueryDto>>>>GetById([FromRoute] int id)
-        {
-            return Ok(await _mediator.Send(new GetTechnologyByIdQuery(id)));
-        }
-
         [HttpGet("area/{areaId}")]
         public async Task<ActionResult<BaseResponse<GetTechnologiesByAreaIdQueryDto>>> GetByAreaId([FromRoute] int areaId)
         {

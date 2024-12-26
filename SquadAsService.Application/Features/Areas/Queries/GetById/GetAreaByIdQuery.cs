@@ -1,11 +1,11 @@
-﻿using Mapster;
-using MediatR;
-using Fiker.Application.Interfaces;
+﻿using Fiker.Application.Interfaces;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System.Net;
+using Mapster;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Fiker.Application.Features.Areas.Queries.GetById
 {
@@ -43,10 +43,11 @@ namespace Fiker.Application.Features.Areas.Queries.GetById
             }
 
             var technologies = await _unitOfWork.Repository<Technology>().Entities
+                            .Where(x => !area.Techonolgies.Select(x => x.TechnologyId).Contains(x.Id))
                             .ProjectToType<GetAreaByIdQueryDto>()
                             .ToListAsync(cancellationToken);
 
-            var areaTechnology = area.Techonolgies.Adapt<List<GetAreaByIdQueryDto>>();
+            var areaTechnology = area.Techonolgies.Select(x=>x.Technology).ToList().Adapt<List<GetAreaByIdQueryDto>>();
             areaTechnology.ForEach(x => x.IsAvailable = true);
 
             technologies.AddRange(areaTechnology);

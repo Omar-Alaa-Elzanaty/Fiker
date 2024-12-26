@@ -1,11 +1,11 @@
 ﻿using Fiker.Api.Endpoints;
 using Fiker.Application.Features.Admin.Commands.Create;
 using Fiker.Application.Features.Admin.Commands.Delete;
+using Fiker.Application.Features.Admin.Commands.UpdateRole;
 using Fiker.Application.Features.Areas.Commands.Delete;
-using Fiker.Application.Features.Contacts.Command.Delete;
+using Fiker.Application.Features.JobTitles.Commands.Delete;
 using Fiker.Application.Features.JobTitles.Commands.EditFromTechnologyId;
 using Fiker.Application.Features.Markets.Commands.Delete;
-using Fiker.Application.Features.Orders.Commands.Delete;
 using Fiker.Application.Features.Technologies.Commands.Delete;
 using Fiker.Application.Features.Technologies.Commands.RemoveFromAreaId;
 using Fiker.Domain.Bases;
@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fiker.API.Endpoints
 {
-    public class SuperAdminController:ApiControllerBase
+    public class SuperAdminController : ApiControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -41,12 +41,6 @@ namespace Fiker.API.Endpoints
             return Ok(await _mediator.Send(new DeleteAreaCommand(id)));
         }
 
-        [HttpDelete("contactUs/{id}")]
-        public async Task<ActionResult<BaseResponse<DeleteContactUsCommand>>> DeleteContactUs([FromRoute] int id)
-        {
-            return Ok(await _mediator.Send(new DeleteContactUsCommand(id)));
-        }
-
         [HttpDelete("markets/{id}")]
         public async Task<ActionResult<BaseResponse<string>>> DeleteMarket([FromRoute] int id)
         {
@@ -59,10 +53,10 @@ namespace Fiker.API.Endpoints
             return Ok(await _mediator.Send(new DeleteTechnologyCommand(id)));
         }
 
-        [HttpDelete("orders/{id}")]
-        public async Task<ActionResult<BaseResponse<string>>> DeleteOrder([FromRoute] int id)
+        [HttpDelete("jobTitle/{id}")]
+        public async Task<ActionResult<BaseResponse<string>>> DeleteJobTitle([FromRoute] int id)
         {
-            return Ok(await _mediator.Send(new DeleteOrderCommand(id)));
+            return Ok(await _mediator.Send(new DeleteJobTitleCommand(id)));
         }
 
         [HttpPut("technogolies/profile")]
@@ -76,5 +70,12 @@ namespace Fiker.API.Endpoints
         {
             return Ok(await _mediator.Send(command));
         }
+
+        [HttpPut("users/role")]
+        public async Task<ActionResult<BaseResponse<string>>> UpdateUserRole([FromBody] UpdateRoleCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
     }
 }

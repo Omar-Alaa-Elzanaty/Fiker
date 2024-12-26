@@ -18,10 +18,12 @@ using Fiker.Application.Features.Technologies.Commands.Delete;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Constants;
 using Fiker.Application.Features.Admin.Commands.Create;
+using Fiker.Application.Features.Technologies.Queries.GetById;
+using Fiker.Application.Features.Admin.Queries.GetAll;
 
 namespace Fiker.API.Endpoints
 {
-    [Authorize(Roles = $"{Roles.Admin}")]
+    [Authorize(Roles = $"{Roles.Admin},{Roles.SuperAdmin}")]
     [Route("api/admin")]
     public class AdminController : ApiControllerBase
     {
@@ -68,6 +70,12 @@ namespace Fiker.API.Endpoints
             return Ok(await _mediator.Send(command));
         }
 
+        [HttpGet("technologies/{id}")]
+        public async Task<ActionResult<BaseResponse<List<GetTechnologyByIdQueryDto>>>> GetById([FromRoute] int id)
+        {
+            return Ok(await _mediator.Send(new GetTechnologyByIdQuery(id)));
+        }
+
         [HttpPost("technologies")]
         public async Task<ActionResult<BaseResponse<int>>> CreateTechnology([FromBody] CreateTechnologyCommand command)
         {
@@ -87,22 +95,16 @@ namespace Fiker.API.Endpoints
             return Ok(await _mediator.Send(new DeleteContactUsCommand(id)));
         }
 
-        [HttpDelete("markets/{id}")]
-        public async Task<ActionResult<BaseResponse<string>>> DeleteMarket([FromRoute] int id)
-        {
-            return Ok(await _mediator.Send(new DeleteMarketCommand(id)));
-        }
-
-        [HttpDelete("technologies/{id}")]
-        public async Task<ActionResult<BaseResponse<string>>> DeleteTechnology([FromRoute] int id)
-        {
-            return Ok(await _mediator.Send(new DeleteTechnologyCommand(id)));
-        }
-
         [HttpDelete("orders/{id}")]
         public async Task<ActionResult<BaseResponse<string>>> DeleteOrder([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new DeleteOrderCommand(id)));
+        }
+
+        [HttpGet("admins")]
+        public async Task<ActionResult<BaseResponse<List<GetAllAdminsQueryDto>>>> GetAllAdmins()
+        {
+            return Ok(await _mediator.Send(new GetAllAdminsQuery()));
         }
     }
 }
