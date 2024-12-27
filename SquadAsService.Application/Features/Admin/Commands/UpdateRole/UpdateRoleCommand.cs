@@ -30,6 +30,8 @@ namespace Fiker.Application.Features.Admin.Commands.UpdateRole
                 return BaseResponse<string>.Fail("User not found.", HttpStatusCode.NotFound);
             }
 
+            command.Role = command.Role.Replace(" ", "");
+
             var userRoles = await _userManager.GetRolesAsync(user);
             await _userManager.RemoveFromRolesAsync(user, userRoles);
             await _userManager.AddToRoleAsync(user,command.Role);

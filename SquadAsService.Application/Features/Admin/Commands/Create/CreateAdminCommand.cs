@@ -40,6 +40,8 @@ namespace Fiker.Application.Features.Admin.Commands.Create
 
             var user = command.Adapt<User>();
 
+            command.Role = command.Role.Replace(" ", "");
+
             var result = await _userManager.CreateAsync(user, command.Password);
 
             if (!result.Succeeded)

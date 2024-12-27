@@ -91,5 +91,39 @@ namespace Fiker.Infrastructure.Services.Email
                 }
             });
         }
+
+        public async Task<bool> SendForgetPasswordEmailAsync(string email, string name, int otp)
+        {
+            var content = File.ReadAllText(_host.WebRootPath + _filePath["OtpResetPassword"]);
+
+            return await _emailService.SendMailUsingRazorTemplateAsync(new EmailRequestDto()
+            {
+                To = [email!],
+                From = _email,
+                Subject = "Fiker - Forget Password Otp",
+                Body = content,
+                BodyData = new
+                {
+                    Name = name,
+                    Otp = otp
+                }
+            });
+        }
+        public async Task<bool> SendEmailConfirmationAsync(string email, int otp)
+        {
+            var content = File.ReadAllText(_host.WebRootPath + _filePath["EmailConfirmation"]);
+
+            return await _emailService.SendMailUsingRazorTemplateAsync(new EmailRequestDto()
+            {
+                To = [email!],
+                From = _email,
+                Subject = "Fiker - Email Confirmation Otp",
+                Body = content,
+                BodyData = new
+                {
+                    Otp = otp
+                }
+            });
+        }
     }
 }

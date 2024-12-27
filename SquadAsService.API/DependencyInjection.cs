@@ -62,7 +62,7 @@ namespace Fiker.Api
             });
 
             services.AddHttpContextAccessor();
-
+            services.AddMemoryCache();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Lockout.AllowedForNewUsers = false;
