@@ -71,7 +71,7 @@ namespace Fiker.Application.Features.Authentication.FogetPassword
                 return BaseResponse<string>.Fail($"Fail to send otp to {command.Email}");
             }
 
-            return BaseResponse<string>.Fail($"Otp was sent to {command.Email}.");
+            return BaseResponse<string>.Success($"Otp was sent to {command.Email}.");
         }
     }
 }

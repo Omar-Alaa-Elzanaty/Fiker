@@ -1,10 +1,10 @@
 ﻿using Fiker.Domain.Bases;
-using Fiker.Domain.Constants;
 using Fiker.Domain.Domains.Identity;
 using FluentValidation;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Admin.Commands.Create
 {
@@ -33,9 +33,19 @@ namespace Fiker.Application.Features.Admin.Commands.Create
         {
             var validationResult = await _validator.ValidateAsync(command, cancellationToken);
 
-            if(!validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 return BaseResponse<string>.ValidationFailure(validationResult.Errors);
+            }
+
+            if (await _userManager.Users.AnyAsync(x => x.Email == command.Email, cancellationToken))
+            {
+                return BaseResponse<string>.Fail("Email already used.");
+            }
+
+            if (await _userManager.Users.AnyAsync(x => x.UserName == command.UserName, cancellationToken))
+            {
+                return BaseResponse<string>.Fail("Username already used.");
             }
 
             var user = command.Adapt<User>();

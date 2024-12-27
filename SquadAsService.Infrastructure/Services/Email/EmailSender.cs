@@ -16,7 +16,7 @@ namespace Fiker.Infrastructure.Services.Email
         {
             _emailService = emailService;
             _host = host;
-            _filePath = config;
+            _filePath = config.GetSection("EmailTemplates");
             _email = config.GetSection("MailSettings:SenderEmail").Value!;
         }
 
