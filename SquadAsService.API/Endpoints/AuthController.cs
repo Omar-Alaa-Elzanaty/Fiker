@@ -6,6 +6,7 @@ using Fiker.Domain.Bases;
 using Fiker.Application.Features.Authentication.FogetPassword;
 using Fiker.Application.Features.Authentication.ResetPassword;
 using Fiker.Application.Features.Authentication.SendConfirmEmailOtp;
+using Fiker.Application.Features.Authentication.CheckResetOtp;
 
 namespace Fiker.API.Endpoints
 {
@@ -40,6 +41,12 @@ namespace Fiker.API.Endpoints
         public async Task<ActionResult<int>> SendEmailConfirmation([FromBody] string email)
         {
             return Ok(await _mediator.Send(new SendConfirmEmailOtpCommand(email)));
+        }
+
+        [HttpGet("checkResetOtp")]
+        public async Task<ActionResult<int>> CheckResetOtp([FromQuery] CheckResetOtpQuery query)
+        {
+            return Ok(await _mediator.Send(query));
         }
     }
 }
