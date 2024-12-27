@@ -1,14 +1,13 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces.Repo;
+﻿using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using Microsoft.EntityFrameworkCore.Internal;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Areas.Queries.GetByTechnologyId
 {
-    public record GetAreaByTechnologyIdQuery:IRequest<BaseResponse<List<GetAreaByTechnologyIdQueryDto>>>
+    public record GetAreaByTechnologyIdQuery : IRequest<BaseResponse<List<GetAreaByTechnologyIdQueryDto>>>
     {
         public int TechnologyId { get; set; }
 
@@ -31,7 +30,8 @@ namespace Fiker.Application.Features.Areas.Queries.GetByTechnologyId
         {
             var areas = await _unitOfWork.Repository<AreaTechonolgy>().Entities
                       .Where(x => x.TechnologyId == command.TechnologyId)
-                      .Select(x=>x.Area)
+                      .Select(x => x.Area)
+                      .OrderByDescending(x => x.Name)
                       .ProjectToType<GetAreaByTechnologyIdQueryDto>()
                       .ToListAsync(cancellationToken);
 

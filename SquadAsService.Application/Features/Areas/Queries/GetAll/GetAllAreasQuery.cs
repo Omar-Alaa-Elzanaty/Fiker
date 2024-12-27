@@ -1,21 +1,15 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces;
-using Fiker.Application.Interfaces.Repo;
+﻿using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Areas.Queries.GetAll
 {
-    public record GetAllAreasQuery:IRequest<BaseResponse<List<GetAllAreasQueryDto>>>
+    public record GetAllAreasQuery : IRequest<BaseResponse<List<GetAllAreasQueryDto>>>
     {
-        
+
     }
 
     internal class GetAllAreasQueryHandler : IRequestHandler<GetAllAreasQuery, BaseResponse<List<GetAllAreasQueryDto>>>
@@ -30,6 +24,7 @@ namespace Fiker.Application.Features.Areas.Queries.GetAll
         public async Task<BaseResponse<List<GetAllAreasQueryDto>>> Handle(GetAllAreasQuery request, CancellationToken cancellationToken)
         {
             var areas = await _unitOfWork.Repository<Area>().Entities
+                        .OrderBy(x => x.Name)
                         .ProjectToType<GetAllAreasQueryDto>()
                         .ToListAsync(cancellationToken);
 

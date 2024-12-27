@@ -1,18 +1,13 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces.Repo;
+﻿using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.JobTitles.Queries.GetByTechnologyId
 {
-    public record GetJobTitleByTechnologyIdQuery:IRequest<BaseResponse<List<GetJobTitleByTechnologyIdQueryDto>>>
+    public record GetJobTitleByTechnologyIdQuery : IRequest<BaseResponse<List<GetJobTitleByTechnologyIdQueryDto>>>
     {
         public int TechnologyId { get; set; }
 
@@ -36,6 +31,7 @@ namespace Fiker.Application.Features.JobTitles.Queries.GetByTechnologyId
             var jobTitles = await _unitOfWork.Repository<TechnologyJobTitle>().Entities
                 .Where(x => x.TechnologyId == request.TechnologyId)
                 .Select(x => x.JobTitle)
+                .OrderBy(x => x.Name)
                 .ProjectToType<GetJobTitleByTechnologyIdQueryDto>()
                 .ToListAsync(cancellationToken);
 

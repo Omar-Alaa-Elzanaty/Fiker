@@ -1,14 +1,9 @@
-﻿using Mapster;
-using MediatR;
-using Fiker.Application.Extensions;
+﻿using Fiker.Application.Extensions;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
 
 namespace Fiker.Application.Features.Contacts.Queries.GetAllWithPagination
 {
@@ -26,6 +21,7 @@ namespace Fiker.Application.Features.Contacts.Queries.GetAllWithPagination
         public async Task<PaginatedResponse<GetAllContactUsWithPaginationQueryDto>> Handle(GetAllContactUsWithPaginationQuery query, CancellationToken cancellationToken)
         {
             var contacts = await _unitOfWork.Repository<ContactUs>().Entities
+                .OrderByDescending(x => x.CreatedAt)
                 .ProjectToType<GetAllContactUsWithPaginationQueryDto>()
                 .ToPaginatedListAsync(query.PageNumber, query.PageSize, cancellationToken);
 

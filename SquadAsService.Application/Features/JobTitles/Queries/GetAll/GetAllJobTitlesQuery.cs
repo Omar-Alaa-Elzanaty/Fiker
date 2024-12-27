@@ -27,6 +27,7 @@ namespace Fiker.Application.Features.JobTitles.Queries.GetAll
         public async Task<BaseResponse<List<GetAllJobTitlesQueryDto>>> Handle(GetAllJobTitlesQuery request, CancellationToken cancellationToken)
         {
             var jobTitles = await _unitOfWork.Repository<JobTitle>().Entities
+                           .OrderByDescending(x=>x.Name)
                            .ProjectToType<GetAllJobTitlesQueryDto>()
                            .ToListAsync(cancellationToken);
 

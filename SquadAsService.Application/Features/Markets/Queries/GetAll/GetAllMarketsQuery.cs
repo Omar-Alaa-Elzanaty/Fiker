@@ -1,19 +1,14 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces;
+﻿using Fiker.Application.Interfaces;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Markets.Queries.GetAll
 {
-    public record GetAllMarketsQuery:IRequest<BaseResponse<List<GetAllMarketsQueryQueryDto>>>;
+    public record GetAllMarketsQuery : IRequest<BaseResponse<List<GetAllMarketsQueryQueryDto>>>;
 
     internal class GetAllMarketsQueryHandler : IRequestHandler<GetAllMarketsQuery, BaseResponse<List<GetAllMarketsQueryQueryDto>>>
     {
@@ -30,6 +25,7 @@ namespace Fiker.Application.Features.Markets.Queries.GetAll
         public async Task<BaseResponse<List<GetAllMarketsQueryQueryDto>>> Handle(GetAllMarketsQuery request, CancellationToken cancellationToken)
         {
             var markets = await _unitOfWork.Repository<Market>().Entities
+                        .OrderBy(x => x.Name)
                         .ProjectToType<GetAllMarketsQueryQueryDto>()
                         .ToListAsync(cancellationToken);
 

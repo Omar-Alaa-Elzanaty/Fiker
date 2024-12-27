@@ -1,21 +1,16 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces;
+﻿using Fiker.Application.Interfaces;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Technologies.Queries.GetAll
 {
-    public record GetAllTechnologiesQuery:IRequest<BaseResponse<List<GetAllTechnologiesQueryDto>>>;
+    public record GetAllTechnologiesQuery : IRequest<BaseResponse<List<GetAllTechnologiesQueryDto>>>;
 
-    internal class GetAllTechnologiesQueryHandler: IRequestHandler<GetAllTechnologiesQuery, BaseResponse<List<GetAllTechnologiesQueryDto>>>
+    internal class GetAllTechnologiesQueryHandler : IRequestHandler<GetAllTechnologiesQuery, BaseResponse<List<GetAllTechnologiesQueryDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
@@ -31,6 +26,7 @@ namespace Fiker.Application.Features.Technologies.Queries.GetAll
         public async Task<BaseResponse<List<GetAllTechnologiesQueryDto>>> Handle(GetAllTechnologiesQuery request, CancellationToken cancellationToken)
         {
             var technologies = await _unitOfWork.Repository<Technology>().Entities
+                        .OrderBy(x => x.Name)
                         .ProjectToType<GetAllTechnologiesQueryDto>()
                         .ToListAsync(cancellationToken);
 

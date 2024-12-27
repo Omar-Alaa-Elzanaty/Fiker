@@ -1,19 +1,14 @@
-﻿using Mapster;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces;
+﻿using Fiker.Application.Interfaces;
 using Fiker.Application.Interfaces.Repo;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Domains;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Mapster;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiker.Application.Features.Technologies.Queries.GetByAreaId
 {
-    public record GetTechnologiesByAreaIdQuery:IRequest<BaseResponse<List<GetTechnologiesByAreaIdQueryDto>>>
+    public record GetTechnologiesByAreaIdQuery : IRequest<BaseResponse<List<GetTechnologiesByAreaIdQueryDto>>>
     {
         public int AreaId { get; set; }
 
@@ -23,7 +18,7 @@ namespace Fiker.Application.Features.Technologies.Queries.GetByAreaId
         }
     }
 
-    internal class GetTechnologyByAreaIdQueryHandler: IRequestHandler<GetTechnologiesByAreaIdQuery, BaseResponse<List<GetTechnologiesByAreaIdQueryDto>>>
+    internal class GetTechnologyByAreaIdQueryHandler : IRequestHandler<GetTechnologiesByAreaIdQuery, BaseResponse<List<GetTechnologiesByAreaIdQueryDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMediaService _mediaService;
@@ -41,10 +36,11 @@ namespace Fiker.Application.Features.Technologies.Queries.GetByAreaId
             var technologies = await _unitOfWork.Repository<AreaTechonolgy>().Entities
                         .Where(x => x.AreaId == command.AreaId)
                         .Select(x => x.Technology)
+                        .OrderBy(x => x.Name)
                         .ProjectToType<GetTechnologiesByAreaIdQueryDto>()
                         .ToListAsync(cancellationToken);
 
-            technologies.ForEach(x=>x.IconUrl = _mediaService.GetUrl(x.IconUrl));
+            technologies.ForEach(x => x.IconUrl = _mediaService.GetUrl(x.IconUrl));
 
             return BaseResponse<List<GetTechnologiesByAreaIdQueryDto>>.Success(technologies);
         }
