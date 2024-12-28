@@ -1,11 +1,10 @@
-﻿using FluentValidation;
+﻿using Fiker.Application.Interfaces.Repo;
+using Fiker.Domain.Bases;
+using Fiker.Domain.Domains;
+using FluentValidation;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Fiker.Application.Interfaces.Repo;
-using Fiker.Domain.Bases;
-using Fiker.Domain.Domains;
-using Fiker.Domain.Domains;
 
 namespace Fiker.Application.Features.Orders.Commands.Create
 {

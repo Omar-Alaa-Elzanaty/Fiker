@@ -7,7 +7,7 @@ namespace Fiker.Domain.Domains
         public string ContactName { get; set; }
         public string ContactEmail { get; set; }
         public string Telphone { get; set; }
-        public string Company { get; set; }
+        public string? Company { get; set; }
         public string? Question { get; set; }
     }
 }
