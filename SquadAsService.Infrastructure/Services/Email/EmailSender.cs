@@ -63,7 +63,7 @@ namespace Fiker.Infrastructure.Services.Email
             return await _emailService.SendMailUsingRazorTemplateAsync(new EmailRequestDto
             {
                 To = email,
-                Subject = "Fiker - Technologies",
+                Subject = "Fiker - Areas",
                 Body = content,
                 From = _email,
                 BodyData = new
@@ -81,7 +81,7 @@ namespace Fiker.Infrastructure.Services.Email
             return await _emailService.SendMailUsingRazorTemplateAsync(new EmailRequestDto
             {
                 To = email,
-                Subject = "Fiker - Technologies",
+                Subject = "Fiker - Profiles",
                 Body = content,
                 From = _email,
                 BodyData = new

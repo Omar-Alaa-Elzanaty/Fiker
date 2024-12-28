@@ -55,7 +55,7 @@ namespace Fiker.Application.Features.Orders.Commands.Create
             }
 
             if (command.Subscribe
-                && await _unitOfWork.Repository<Subscriber>().Entities.AnyAsync(x => x.ContactEmail == command.ContactEmail, cancellationToken))
+                && !await _unitOfWork.Repository<Subscriber>().Entities.AnyAsync(x => x.ContactEmail == command.ContactEmail, cancellationToken))
             {
                 var subscriber = command.Adapt<Subscriber>();
                 await _unitOfWork.Repository<Subscriber>().AddAsync(subscriber);

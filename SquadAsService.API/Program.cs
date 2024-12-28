@@ -5,6 +5,7 @@ using Fiker.Infrastructure.Extensions;
 using Fiker.Presentation.MiddleWare;
 using Fiker.Presistance.Extensions;
 using Fiker.Presistance.Seeding;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +61,7 @@ app.UseAuthorization();
 app.UseMiddleware<GlobalErrorHandlerMiddleware>();
 
 app.MapControllers();
-
+app.UseHangfireDashboard("/hangFireDashboard");
 SeedingData.Invoke(app.Services.CreateScope().ServiceProvider).Wait();
 
 app.Run();
