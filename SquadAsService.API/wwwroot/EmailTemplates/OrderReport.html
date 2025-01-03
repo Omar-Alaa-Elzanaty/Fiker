@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                margin: 0;
+            }
+
+        .content {
+            color: #555555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888888;
+            font-size: 14px;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Thank You for Your Order!</h1>
+        </div>
+        <div class="content">
+            <p>Dear @Model.Company,</p>
+            <p>Thank you for choosing <strong>Fiker</strong>! We’re thrilled to have you onboard and truly appreciate your trust in our system.</p>
+            <p>Your order has been successfully received, and we are currently processing it. Rest assured, our team is working diligently to ensure everything is in place. We will contact you shortly with further details or updates regarding your order.</p>
+            <p>If you have any questions or need assistance in the meantime, feel free to reply to this email or contact our support team at <a href="mailto:@Model.FikerEmail">[support email]</a>.</p>
+            <p>Thank you once again for your support, and we look forward to serving you!</p>
+            <a href="[Your Website URL]" class="button">Visit Our Website</a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Fiker. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

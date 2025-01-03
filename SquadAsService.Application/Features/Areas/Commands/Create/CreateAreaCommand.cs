@@ -70,7 +70,7 @@ namespace Fiker.Application.Features.Areas.Commands.Create
             await _unitOfWork.Repository<Area>().AddAsync(area);
             await _unitOfWork.SaveAsync();
 
-            BackgroundJob.Enqueue(() => _categoryTasks.SendNewArea(command.Name).GetAwaiter());
+            //BackgroundJob.Enqueue(() => _categoryTasks.SendNewArea(command.Name).GetAwaiter());
 
             return BaseResponse<int>.Success(area.Id);
         }

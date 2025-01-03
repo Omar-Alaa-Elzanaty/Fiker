@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fiker.Application.Comman.Dtos;
+using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace Fiker.Application.Comman.Mapping
 {
@@ -17,6 +19,14 @@ namespace Fiker.Application.Comman.Mapping
                 .Map(dest => dest.Area, src => src.Area.Name)
                 .Map(dest => dest.Market, src => src.Market.Name)
                 .Map(dest => dest.Technology, src => src.Technology.Name);
+
+            config.NewConfig<Order, OrderReportDto>()
+                .Map(dest => dest.Area, src => src.Area.Name)
+                .Map(dest => dest.Market, src => src.Market.Name)
+                .Map(dest => dest.Technology, src => src.Technology.Name)
+                .Map(dest => dest.CompanyName, src => src.Company);
+
+
         }
     }
 }

@@ -8,6 +8,11 @@ using System.Net;
 using Hangfire;
 using Fiker.Infrastructure.Services.Email;
 using Fiker.Infrastructure.Services.Job.Tasks;
+using Fiker.Infrastructure.Services.RazorServices;
+using Fiker.Infrastructure.Services.Report.Order;
+using Fiker.Application.Features.Orders.Commands.Create;
+using Fiker.Domain.Bases;
+using MediatR;
 
 namespace Fiker.Infrastructure.Extensions
 {
@@ -30,6 +35,8 @@ namespace Fiker.Infrastructure.Extensions
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<ICategoryTasks, CategoryTasks>();
+            //services.AddTransient<IRazorRendering,RazorRendering>();
+            //services.AddTransient<IOrderReport, OrderReport>();
 
             return services;
         }

@@ -1,9 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fiker.Application.Features.Technologies.Commands.Create
 {
@@ -19,7 +14,7 @@ namespace Fiker.Application.Features.Technologies.Commands.Create
             RuleFor(x => x.IconFile.FileName)
                 .NotEmpty()
                 .WithMessage("Icon is required.");
-            
+
             RuleFor(x => x.IconFile.Base64)
                 .NotEmpty()
                 .WithMessage("Icon is required.");

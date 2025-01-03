@@ -125,5 +125,24 @@ namespace Fiker.Infrastructure.Services.Email
                 }
             });
         }
+
+        public async Task<bool> SendOrderReportEmailAsync(string email, string copmany, MediaFile attachmentReport)
+        {
+            var content = File.ReadAllText(_host.WebRootPath + _filePath["OrderReport"]);
+
+            return await _emailService.SendMailUsingRazorTemplateAsync(new EmailRequestDto()
+            {
+                To = [email!],
+                From = _email,
+                Subject = "Fiker - Email Confirmation Otp",
+                Body = content,
+                Attachment = attachmentReport,
+                BodyData = new
+                {
+                    Company = copmany,
+                    FikerEmail = _email
+                }
+            });
+        }
     }
 }

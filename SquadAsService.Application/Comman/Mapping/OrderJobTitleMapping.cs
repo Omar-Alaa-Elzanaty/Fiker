@@ -8,7 +8,6 @@ namespace Fiker.Application.Comman.Mapping
     {
         public void Register(TypeAdapterConfig config)
         {
-
         }
     }
 }

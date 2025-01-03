@@ -10,5 +10,6 @@ namespace Fiker.Application.Features.JobTitles.Queries.GetAll
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Price { get; set; }
     }
 }

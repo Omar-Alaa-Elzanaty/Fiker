@@ -1,5 +1,4 @@
 ﻿using Fiker.Domain.Bases;
-using Fiker.Domain.Domains;
 
 namespace Fiker.Domain.Domains
 {
@@ -16,6 +15,8 @@ namespace Fiker.Domain.Domains
         public virtual Market Market { get; set; }
         public bool IsDeleted { get; set; }
         public int TechnologyId { get; set; }
+        public int Cost { get; set; }
+        public int MonthsCount { get; set; }
         public virtual Technology Technology { get; set; }
         public virtual List<OrderJobTitle> Profiles { get; set; }
     }

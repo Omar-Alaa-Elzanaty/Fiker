@@ -76,7 +76,7 @@ namespace Fiker.Application.Features.Technologies.Commands.Create
             await _unitOfWork.Repository<Technology>().AddAsync(technology);
             await _unitOfWork.SaveAsync();
 
-            BackgroundJob.Enqueue(() => _categoryTasks.SendNewTechnology(command.Name).GetAwaiter());
+            //BackgroundJob.Enqueue(() => _categoryTasks.SendNewTechnology(command.Name).GetAwaiter());
 
             return BaseResponse<int>.Success(technology.Id);
         }

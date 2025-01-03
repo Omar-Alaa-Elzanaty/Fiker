@@ -14,6 +14,7 @@ namespace Fiker.Application.Features.JobTitles.Commands.Create
     public record CreateJobTitlesCommand : IRequest<BaseResponse<int>>
     {
         public string Name { get; set; }
+        public int Price { get; set; }
     }
 
     internal class CreateJobTitlesCommandHandler : IRequestHandler<CreateJobTitlesCommand, BaseResponse<int>>
@@ -51,7 +52,7 @@ namespace Fiker.Application.Features.JobTitles.Commands.Create
             await _unitOfWork.Repository<JobTitle>().AddAsync(jobTitle);
             await _unitOfWork.SaveAsync();
 
-            BackgroundJob.Enqueue(() => _categoryTasks.SendNewProfile(command.Name).GetAwaiter());
+            //BackgroundJob.Enqueue(() => _categoryTasks.SendNewProfile(command.Name).GetAwaiter());
 
 
             return BaseResponse<int>.Success(jobTitle.Id);

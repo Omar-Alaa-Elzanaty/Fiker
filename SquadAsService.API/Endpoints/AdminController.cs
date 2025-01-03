@@ -1,25 +1,22 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Fiker.Api.Endpoints;
+﻿using Fiker.Api.Endpoints;
+using Fiker.Application.Features.Admin.Queries.GetAll;
 using Fiker.Application.Features.Areas.Commands.Create;
-using Fiker.Application.Features.Areas.Commands.Delete;
 using Fiker.Application.Features.Areas.Queries.GetById;
 using Fiker.Application.Features.Contacts.Command.Delete;
 using Fiker.Application.Features.Contacts.Queries.GetAllWithPagination;
 using Fiker.Application.Features.JobTitles.Commands.Create;
+using Fiker.Application.Features.JobTitles.Commands.Update;
 using Fiker.Application.Features.Markets.Commands.Create;
-using Fiker.Application.Features.Markets.Commands.Delete;
 using Fiker.Application.Features.Orders.Commands.Delete;
 using Fiker.Application.Features.Orders.Queries.GetAllWithPagination;
 using Fiker.Application.Features.Orders.Queries.GetById;
 using Fiker.Application.Features.Technologies.Commands.Create;
-using Fiker.Application.Features.Technologies.Commands.Delete;
+using Fiker.Application.Features.Technologies.Queries.GetById;
 using Fiker.Domain.Bases;
 using Fiker.Domain.Constants;
-using Fiker.Application.Features.Admin.Commands.Create;
-using Fiker.Application.Features.Technologies.Queries.GetById;
-using Fiker.Application.Features.Admin.Queries.GetAll;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fiker.API.Endpoints
 {
@@ -60,6 +57,12 @@ namespace Fiker.API.Endpoints
 
         [HttpPost("jobTitles")]
         public async Task<ActionResult<BaseResponse<int>>> CreateJobTitle([FromBody] CreateJobTitlesCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        [HttpPut("jobTitles")]
+        public async Task<ActionResult<BaseResponse<string>>> UpdateJobTitle([FromBody] UpdateJobTitleCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

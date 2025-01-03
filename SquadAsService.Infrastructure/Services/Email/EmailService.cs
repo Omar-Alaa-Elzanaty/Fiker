@@ -16,15 +16,30 @@ namespace Fiker.Infrastructure.Services.Email
 
         public async Task<bool> SendMailUsingRazorTemplateAsync(EmailRequestDto request)
         {
-            var sendResponse = await _fluentEmail
+            var emailTosend =  _fluentEmail
                                         .Create()
                                         .SetFrom(request.From, "Fiker")
                                         .To(request.To)
                                         .Subject(request.Subject)
-                                        .UsingTemplate(request.Body, request.BodyData)
-                                        .SendAsync();
+                                        .UsingTemplate(request.Body, request.BodyData);
 
-            return sendResponse.Successful;
+            if (request.Attachment != null)
+            {
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(request.Attachment.Base64);
+
+                using (MemoryStream stream = new MemoryStream(byteArray))
+                {
+                    emailTosend = emailTosend.Attach(new Attachment()
+                    {
+                        Filename = request.Attachment.FileName,
+                        Data = new MemoryStream(byteArray)
+                    });
+                }
+            }
+
+            var response = await emailTosend.SendAsync();
+
+            return response.Successful;
         }
     }
 }

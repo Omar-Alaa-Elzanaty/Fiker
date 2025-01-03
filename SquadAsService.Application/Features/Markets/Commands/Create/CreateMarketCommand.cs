@@ -59,7 +59,7 @@ namespace Fiker.Application.Features.Markets.Commands.Create
             await _unitOfWork.Repository<Market>().AddAsync(market);
             await _unitOfWork.SaveAsync();
 
-            BackgroundJob.Enqueue(() => _categoryTasks.SendNewMarket(command.Name).GetAwaiter());
+            //BackgroundJob.Enqueue(() => _categoryTasks.SendNewMarket(command.Name).GetAwaiter());
 
 
             return BaseResponse<int>.Success(market.Id);
