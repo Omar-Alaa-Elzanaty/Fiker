@@ -126,7 +126,7 @@ namespace Fiker.Infrastructure.Services.Email
             });
         }
 
-        public async Task<bool> SendOrderReportEmailAsync(string email, string copmany, MediaFile attachmentReport)
+        public async Task<bool> SendOrderReportEmailAsync(string email, string copmany, MediaFormFileDto attachmentReport)
         {
             var content = File.ReadAllText(_host.WebRootPath + _filePath["OrderReport"]);
 

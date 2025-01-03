@@ -15,6 +15,6 @@ namespace Fiker.Domain.Dtos
         public object BodyData { get; set; }
         public string From { get; set; }
         public string Email { get; set; }
-        public MediaFile? Attachment { get; set; }
+        public MediaFormFileDto? Attachment { get; set; }
     }
 }

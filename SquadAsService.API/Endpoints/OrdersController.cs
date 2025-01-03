@@ -18,7 +18,7 @@ namespace Fiker.Api.Endpoints
         }
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<int>>> Create([FromBody] CreateOrderCommand command)
+        public async Task<ActionResult<BaseResponse<int>>> Create([FromForm] CreateOrderCommand command)
         {
             return Ok(await _mediator.Send(command));
         }

@@ -24,7 +24,7 @@ namespace Fiker.Application.Features.Orders.Commands.Create
         public int TechnologyId { get; set; }
         public bool Subscribe { get; set; }
         public int MonthsCount { get; set; }
-        public MediaFile Attachment { get; set; }
+        public MediaFormFileDto Attachment { get; set; }
         public List<OrderProfile> Profiles { get; set; }
     }
     public class OrderProfile
@@ -102,13 +102,7 @@ namespace Fiker.Application.Features.Orders.Commands.Create
             await _unitOfWork.Repository<Order>().AddAsync(order);
             await _unitOfWork.SaveAsync();
 
-            //var receipt = new MediaFile() {
-            //    FileName = command.Company + "_Order",
-            //    Base64 = await _orderReport.GetReportAsync(orderReport)
-            //};
-
-            BackgroundJob.Enqueue(
-                () => _emailSender.SendOrderReportEmailAsync(command.ContactEmail, command.Company ?? command.ContactName, command.Attachment));
+            await _emailSender.SendOrderReportEmailAsync(command.ContactEmail, command.Company ?? command.ContactName, command.Attachment);
 
             return BaseResponse<int>.Success(order.Id);
         }

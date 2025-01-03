@@ -10,6 +10,6 @@ namespace Fiker.Application.Interfaces
         Task<bool> SendNewProfileEmail(string profileName, List<string> email);
         Task<bool> SendForgetPasswordEmailAsync(string email, string name, int otp);
         Task<bool> SendEmailConfirmationAsync(string email, int otp);
-        Task<bool> SendOrderReportEmailAsync(string email, string copmany, MediaFile attachmentReport);
+        Task<bool> SendOrderReportEmailAsync(string email, string copmany, MediaFormFileDto attachmentReport);
     }
 }
